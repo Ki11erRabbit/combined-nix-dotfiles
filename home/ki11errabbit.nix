@@ -182,7 +182,7 @@ fi
         typescript
         bitwarden-desktop
         jetbrains.rust-rover
-        jetbrains.idea-ultimate
+        jetbrains.idea
         cargo-generate
         jetbrains.clion
         jetbrains.rider

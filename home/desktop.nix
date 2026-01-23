@@ -2,6 +2,33 @@
 
 {
 
+    home.packages = with pkgs; [
+        obs-studio
+        godot-mono
+        bemenu
+        wlr-randr
+        waybar
+        swaybg
+        mpvpaper
+        transmission_4-gtk
+        fnott
+        imv
+        wdisplays
+        swaylock
+        libreoffice
+        kmonad
+        swayidle
+        wl-clipboard
+        hunspell
+        hunspellDicts.en_US
+        sway-contrib.grimshot
+        heroic
+        pavucontrol
+        audacious
+        kdePackages.ark
+        gimp
+    ];
+
     nixpkgs.config.packageOverrides = pkgs: {
         steam = pkgs.steam.override {
             extraPkgs = pkgs: with pkgs; [
@@ -19,16 +46,10 @@
         };
     };
 
-    home.packages = with pkgs; [
-        obs-studio
-        godot-mono
-    ];
-    
-
     home.file = {
         ".local/bin/run-wallpaper-wayland.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/run-wallpaper-wayland.sh)
+            text = builtins.readFile(../scripts/run-wallpaper-wayland.sh);
         };
     };
 

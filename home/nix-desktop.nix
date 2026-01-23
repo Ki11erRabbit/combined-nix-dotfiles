@@ -4,7 +4,6 @@
     home.stateVersion = "25.11";
     home.homeDirectory = "/home/ki11errabbit";
     home.packages = with pkgs; [
-        zen
         discord
         slack
         signal-desktop
@@ -22,6 +21,7 @@
         blender
         arduino-ide
     ];
+    programs.zen-browser.enable = true;
 
     wayland.windowManager.mango = {
         enable = true;
@@ -31,7 +31,6 @@
     
 
     wayland.windowManager.sway = {
-        config.
         config = rec {
             modifier = "Mod4";
             terminal = "alacritty";
@@ -79,69 +78,69 @@
     home.file = {
         ".local/bin/setup-swayidle.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/setup-swayidle.sh)
+            text = builtins.readFile(../scripts/desktop/setup-swayidle.sh);
         };
         ".local/bin/setup-keyboard.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/setup-keyboard.sh)
+            text = builtins.readFile(../scripts/desktop/setup-keyboard.sh);
         };
         ".local/bin/setup-wallpaper.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/setup-wallpaper.sh)
+            text = builtins.readFile(../scripts/desktop/setup-wallpaper.sh);
         };
         ".local/bin/configure-monitor.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/configure-monitors.sh)
+            text = builtins.readFile(../scripts/desktop/configure-monitors.sh);
         };
         ".local/bin/screen-toggle.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/screen-toggle.sh)
+            text = builtins.readFile(../scripts/desktop/screen-toggle.sh);
         };
         ".local/bin/wallpaper-wayland.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/wallpaper-wayland.sh)
+            text = builtins.readFile(../scripts/desktop/wallpaper-wayland.sh);
         };
         ".local/bin/lockscreen.sh" = {
             executable = true;
-            text = builtins.readFile(../scripts/desktop/lockscreen.sh)
+            text = builtins.readFile(../scripts/desktop/lockscreen.sh);
         };
         ".config/fnott/fnott.ini" = {
-            text = builtins.readFile(../fnott-desktop/.config/fnott/fnott.ini)
+            text = builtins.readFile(../fnott-desktop/.config/fnott/fnott.ini);
         };
         ".config/waybar/config" = {
-            text = builtins.readFile(../waybar-desktop/.config/waybar/config)
+            text = builtins.readFile(../waybar-desktop/.config/waybar/config);
         };
     };
     
     xdg.mimeApps = {
         enable = true;
         associations.added = {
-            "application/x-extension-html" = [ "firefox.desktop" ];
-            "application/x-extension-htm" = [ "firefox.desktop" ];
-            "application/x-extension-xhtml" = [ "firefox.desktop" ];
-            "application/x-extension-shtml" = [ "firefox.desktop" ];
-            "application/x-extension-xht" = [ "firefox.desktop" ];
-            "application/xhtml+xml" = [ "firefox.desktop" ];
-            "text/html" = [ "firefox.desktop" ];
-            "x-scheme-handler/about" = [ "firefox.desktop" ];
-            "x-scheme-handler/attachment" = [ "firefox.desktop" ];
-            "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-            "x-scheme-handler/http" = [ "firefox.desktop" ];
-            "x-scheme-handler/https" = [ "firefox.desktop" ];
+            "application/x-extension-html" = [ "zen.desktop" ];
+            "application/x-extension-htm" = [ "zen.desktop" ];
+            "application/x-extension-xhtml" = [ "zen.desktop" ];
+            "application/x-extension-shtml" = [ "zen.desktop" ];
+            "application/x-extension-xht" = [ "zen.desktop" ];
+            "application/xhtml+xml" = [ "zen.desktop" ];
+            "text/html" = [ "zen.desktop" ];
+            "x-scheme-handler/about" = [ "zen.desktop" ];
+            "x-scheme-handler/attachment" = [ "zen.desktop" ];
+            "x-scheme-handler/chrome" = [ "zen.desktop" ];
+            "x-scheme-handler/http" = [ "zen.desktop" ];
+            "x-scheme-handler/https" = [ "zen.desktop" ];
         };
         defaultApplications = {
-            "application/x-extension-html" = [ "firefox.desktop" ];
-            "application/x-extension-htm" = [ "firefox.desktop" ];
-            "application/x-extension-xhtml" = [ "firefox.desktop" ];
-            "application/x-extension-shtml" = [ "firefox.desktop" ];
-            "application/x-extension-xht" = [ "firefox.desktop" ];
-            "application/xhtml+xml" = [ "firefox.desktop" ];
-            "text/html" = [ "firefox.desktop" ];
-            "x-scheme-handler/about" = [ "firefox.desktop" ];
-            "x-scheme-handler/attachment" = [ "firefox.desktop" ];
-            "x-scheme-handler/chrome" = [ "firefox.desktop" ];
-            "x-scheme-handler/http" = [ "firefox.desktop" ];
-            "x-scheme-handler/https" = [ "firefox.desktop" ];
+            "application/x-extension-html" = [ "zen.desktop" ];
+            "application/x-extension-htm" = [ "zen.desktop" ];
+            "application/x-extension-xhtml" = [ "zen.desktop" ];
+            "application/x-extension-shtml" = [ "zen.desktop" ];
+            "application/x-extension-xht" = [ "zen.desktop" ];
+            "application/xhtml+xml" = [ "zen.desktop" ];
+            "text/html" = [ "zen.desktop" ];
+            "x-scheme-handler/about" = [ "zen.desktop" ];
+            "x-scheme-handler/attachment" = [ "zen.desktop" ];
+            "x-scheme-handler/chrome" = [ "zen.desktop" ];
+            "x-scheme-handler/http" = [ "zen.desktop" ];
+            "x-scheme-handler/https" = [ "zen.desktop" ];
 
         };
     };
