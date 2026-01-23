@@ -27,6 +27,8 @@
         audacious
         kdePackages.ark
         gimp
+        openscad
+        openscad-lsp
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
