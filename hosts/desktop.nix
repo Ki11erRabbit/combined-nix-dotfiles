@@ -37,5 +37,11 @@
     services.blueman.enable = true;
 
     hardware.steam-hardware.enable = true;
+
+    services.sunshine = {
+        enable = true;
+        capSysAdmin = true;
+        openFirewall = true;
+    };
 }
 
