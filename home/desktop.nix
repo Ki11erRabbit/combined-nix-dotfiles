@@ -29,6 +29,7 @@
         gimp
         openscad
         openscad-lsp
+        qutebrowser
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
