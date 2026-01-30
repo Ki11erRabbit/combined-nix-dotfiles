@@ -1,0 +1,18 @@
+add_newline = false
+format = "❬$username❭ $directory\n$character"
+
+[character]
+error_symbol = " "
+success_symbol = " "
+
+[directory]
+format = "[$path]($style)"
+style = "fg:cyan"
+truncate_to_repo = false
+truncation_length = 0
+
+[username]
+format = "[$user]($style)"
+show_always = true
+style_root = "bold red"
+style_user = "purple"
