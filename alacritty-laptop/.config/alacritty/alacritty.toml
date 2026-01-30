@@ -1,0 +1,61 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "0xacb0be"
+blue = "0x1e66f5"
+cyan = "0x179299"
+green = "0x40a02b"
+magenta = "0xea76cb"
+red = "0xd20f39"
+white = "0x6c6f85"
+yellow = "0xdf8e1d"
+
+[colors.normal]
+black = "0xbcc0cc"
+blue = "0x1e66f5"
+cyan = "0x179299"
+green = "0x40a02b"
+magenta = "0xea76cb"
+red = "0xd20f39"
+white = "0x5c5f77"
+yellow = "0xdf8e1d"
+
+[colors.primary]
+background = "0xeff1f5"
+foreground = "0x4c4f69"
+
+[cursor.style]
+blinking = "On"
+shape = "Beam"
+
+[font]
+size = 8
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Text Italic"
+
+[font.normal]
+family = "monospace"
+style = "Text"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[scrolling]
+history = 50000
+
+[window.padding]
+x = 0
+y = 0
