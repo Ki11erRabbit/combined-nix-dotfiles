@@ -39,6 +39,8 @@ for opt in "${disabled_opts[@]}"; do
 done
 unset opt disabled_opts
 
+export PATH="$PATH:/home/ki11errabbit/.cabal/bin:/home/ki11errabbit/.local/bin:$PATH:/home/ki11errabbit/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/home/ki11errabbit/.cargo/bin"
+
 if [[ -o interactive ]]; then
     exec nu
 fi
