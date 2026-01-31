@@ -1,8 +1,8 @@
 #!/bin/sh
 
-
 case $BLOCK_BUTTON in
-    1) power_profile_set.sh ;;
+    1) notify-send "Current Power Profile" "$(powerprofilesctl get)";;
+    2) power_profile_set.sh ;;
     4)
         case $(powerprofilesctl get) in
             balanced) powerprofilesctl set performance ;;
@@ -16,8 +16,6 @@ case $BLOCK_BUTTON in
         esac
         ;;
 esac
-
-echo -n "$(powerprofilesctl get) "
 
 for battery in /sys/class/power_supply/BAT?*; do
     # If non-first battery, print a space separator.
@@ -50,5 +48,5 @@ for battery in /sys/class/power_supply/BAT?*; do
         width="3"
     fi
     
-    echo "^r0,7,2,4^^r2,4,22,10^^c#ffffff^^r3,5,20,8^^c#${color}^^r${start},5,${width},8^^d^^f24^"
+    echo "^r0,7,2,4^^r2,4,22,10^^c#ffffff^^r3,5,20,8^^c#${color}^^r${start},5,${width},8^^d^^f24^ ${capacity}%"
 done
