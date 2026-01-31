@@ -95,7 +95,7 @@ $env.PATH = ($env.PATH |
 
 alias "bat" = bat --style plain
 alias "batf" = bat --style full
-alias "cd" = z
+#alias "cd" = z
 alias "cp" = cp -iv
 alias "emacs" = emacsclient -c -a "emacs"
 alias "grep" = grep --color=auto
