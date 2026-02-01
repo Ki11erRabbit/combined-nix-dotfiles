@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
     1) notify-send "Current Power Profile" "$(powerprofilesctl get)";;
-    2) power_profile_set.sh ;;
+    3) power_profile_set.sh ;;
     4)
         case $(powerprofilesctl get) in
             balanced) powerprofilesctl set performance ;;

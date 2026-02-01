@@ -1,7 +1,9 @@
 #!/bin/sh
 
-options=("performance" "balanced" "power-saver")
+options="performance
+balanced
+power-saver"
 
-selected="$(echo "$options" | demenu -p "New Powerstate:")"
+selected="$(echo "$options" | dmenu -p "New Powerstate:")"
 
 powerprofilesctl set "$selectd"
