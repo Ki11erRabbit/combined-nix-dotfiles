@@ -34,11 +34,11 @@ for battery in /sys/class/power_supply/BAT?*; do
         start="10"
         width="13"
     elif [ "$capacity" -gt 50 ]; then
-        color="df8e1d"
+        color="40a02b"
         start="14"
         width="9"
     elif [ "$capacity" -gt 30 ]; then
-        color="fe640b"
+        color="df8e1d"
         start="16"
         width="7"
     elif [ "$capacity" -gt 10 ]; then
