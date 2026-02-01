@@ -17,7 +17,10 @@ case $BLOCK_BUTTON in
         ;;
 esac
 
+NO_BATTERY=true
+
 for battery in /sys/class/power_supply/BAT?*; do
+    NO_BATTERY=false
     # If non-first battery, print a space separator.
     [ -n "${capacity+x}" ] && printf " "
 
@@ -50,3 +53,8 @@ for battery in /sys/class/power_supply/BAT?*; do
     
     echo "^r0,7,2,4^^r2,4,22,10^^c#ffffff^^r3,5,20,8^^c#${color}^^r${start},5,${width},8^^d^^f24^ ${capacity}%"
 done
+
+if [[ "$NO_BATTERY" == "true" ]]; then
+    echo "$(powerprofilesctl get)"
+fi
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+output=$(free -h | awk '/^Mem/ { print $3 }')
+
+echo " $output"
+
