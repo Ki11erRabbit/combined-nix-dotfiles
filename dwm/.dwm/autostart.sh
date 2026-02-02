@@ -9,3 +9,5 @@ setxkbmap us -variant colemak_dh -option caps:backspace
 xset r 66
 
 dwmblocks &
+
+dwm-lock.sh &
