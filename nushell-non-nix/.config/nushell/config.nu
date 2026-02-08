@@ -92,6 +92,15 @@ $env.PATH = ($env.PATH |
   append /usr/bin/env
 )
 
+def --env y [...args] {
+  let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+  ^yazi ...$args --cwd-file $tmp
+  let cwd = (open $tmp)
+  if $cwd != $env.PWD and ($cwd | path exists) {
+    cd $cwd
+  }
+  rm -fp $tmp
+}
 
 alias "bat" = bat --style plain
 alias "batf" = bat --style full
@@ -101,6 +110,7 @@ alias "emacs" = emacsclient -c -a "emacs"
 alias "grep" = grep --color=auto
 alias "mv" = mv -iv
 alias "rm" = trash -v
+
 
 source $"($nu.cache-dir)/carapace.nu"
 
