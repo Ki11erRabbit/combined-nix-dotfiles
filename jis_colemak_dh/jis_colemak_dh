@@ -1,0 +1,122 @@
+// JIS Keyboard - Colemak-DH Layout
+// ============================================================
+// Place this file at: /usr/share/X11/xkb/symbols/jis_colemak_dh
+// Then activate with:
+//   setxkbmap -layout jis_colemak_dh
+// Or add to /etc/default/keyboard:
+//   XKBLAYOUT="jis_colemak_dh"
+//
+// JIS Extra Keys Mapped:
+//   Caps Lock         → Backspace
+//   Muhenkan  (無変換) → Escape
+//   Henkan    (変換)   → Delete
+//   Kana      (カナ)   → Grave / Tilde (` ~)
+//   Yen       (¥)     → ¥ / € symbols
+//   Ro        (ろ)    → 」/ ] (right Japanese quote)
+//   AC12 (JIS ¥\)    → 「/ [ (left Japanese quote)
+// ============================================================
+
+default  partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    name[Group1] = "JIS Colemak-DH";
+
+    // --- Number row (unchanged from standard) ---
+    key <TLDE> { [ grave,        asciitilde,   grave,      asciitilde ] };
+    key <AE01> { [ 1,            exclam                               ] };
+    key <AE02> { [ 2,            at                                   ] };
+    key <AE03> { [ 3,            numbersign                           ] };
+    key <AE04> { [ 4,            dollar                               ] };
+    key <AE05> { [ 5,            percent                              ] };
+    key <AE06> { [ 6,            asciicircum                          ] };
+    key <AE07> { [ 7,            ampersand                            ] };
+    key <AE08> { [ 8,            asterisk                             ] };
+    key <AE09> { [ 9,            parenleft                            ] };
+    key <AE10> { [ 0,            parenright                           ] };
+    key <AE11> { [ minus,        underscore                           ] };
+    key <AE12> { [ equal,        plus                                 ] };
+
+    // --- JIS-specific: Yen key (between AE12 and backspace on JIS) ---
+    key <AE13> { [ yen,          EuroSign                             ] };
+
+    // --- Top row: Colemak-DH ---
+    // Q W F P B   J L U Y ;
+    key <AD01> { [ q,            Q                                    ] };
+    key <AD02> { [ w,            W                                    ] };
+    key <AD03> { [ f,            F                                    ] };
+    key <AD04> { [ p,            P                                    ] };
+    key <AD05> { [ b,            B                                    ] };
+    key <AD06> { [ j,            J                                    ] };
+    key <AD07> { [ l,            L                                    ] };
+    key <AD08> { [ u,            U                                    ] };
+    key <AD09> { [ y,            Y                                    ] };
+    key <AD10> { [ semicolon,    colon                                ] };
+    key <AD11> { [ bracketleft,  braceleft                            ] };
+    key <AD12> { [ bracketright, braceright                           ] };
+
+    // --- Home row: Colemak-DH ---
+    // A R S T G   M N E I O '
+    key <AC01> { [ a,            A                                    ] };
+    key <AC02> { [ r,            R                                    ] };
+    key <AC03> { [ s,            S                                    ] };
+    key <AC04> { [ t,            T                                    ] };
+    key <AC05> { [ g,            G                                    ] };
+    key <AC06> { [ m,            M                                    ] };
+    key <AC07> { [ n,            N                                    ] };
+    key <AC08> { [ e,            E                                    ] };
+    key <AC09> { [ i,            I                                    ] };
+    key <AC10> { [ o,            O                                    ] };
+    key <AC11> { [ apostrophe,   quotedbl                             ] };
+
+    // --- JIS backslash key (between AC11 and Return on JIS) → left Japanese quote ---
+    key <AC12> { [ U300C,        bracketleft                          ] };  // 「 / [
+
+    // --- Bottom row: Colemak-DH ---
+    // Z X C D V   K H , . /
+    key <AB01> { [ x,            X                                    ] };
+    key <AB02> { [ c,            C                                    ] };
+    key <AB03> { [ d,            D                                    ] };
+    key <AB04> { [ v,            V                                    ] };
+    key <AB05> { [ z,            Z                                    ] };
+    key <AB06> { [ k,            K                                    ] };
+    key <AB07> { [ h,            H                                    ] };
+    key <AB08> { [ comma,        less                                 ] };
+    key <AB09> { [ period,       greater                              ] };
+    key <AB10> { [ slash,        question                             ] };
+
+    // --- JIS Ro key (rightmost on bottom row) → right Japanese quote ---
+    key <AB11> { [ U300D,        bracketright                         ] };  // 」/ ]
+
+    // --- JIS Special Keys ---
+    // Hankaku/Zenkaku (top-left, where grave/tilde usually is on ANSI)
+    key <HZTG> { [ grave,        asciitilde                           ] };
+
+    // Muhenkan (無変換) - left of space → Escape
+    key <MUHE> { [ Escape                                             ] };
+
+    // Henkan (変換) - right of space → Delete
+    key <HENK> { [ Delete                                             ] };
+
+    // Katakana/Hiragana - keycode 101 (confirmed via xev: keysym 0xff27, Hiragana_Katakana)
+    key <HIRA> { [ grave,        asciitilde                           ] };
+    key <KATA> { [ grave,        asciitilde                           ] };
+    key <KANA> { [ grave,        asciitilde                           ] };
+    key <FK16> { [ grave,        asciitilde                           ] };
+    key	< 101> { [ grave,        asciitilde                           ] };
+
+    // --- Standard modifier keys ---
+    key <CAPS> { [ BackSpace                                          ] };  // Caps → Backspace
+    key <LSFT> { [ Shift_L                                            ] };
+    key <RSFT> { [ Shift_R                                            ] };
+    key <LCTL> { [ Control_L                                          ] };
+    key <RCTL> { [ Control_R                                          ] };
+    key <LALT> { [ Alt_L,        Meta_L                               ] };
+    key <RALT> { [ Alt_R,        Meta_R                               ] };
+    key <LWIN> { [ Super_L                                            ] };
+    key <RWIN> { [ Super_R                                            ] };
+
+    modifier_map Shift   { <LSFT>, <RSFT> };
+    modifier_map Control { <LCTL>, <RCTL> };
+    modifier_map Mod1    { <LALT>, <RALT> };
+    modifier_map Mod4    { <LWIN>, <RWIN> };
+};
