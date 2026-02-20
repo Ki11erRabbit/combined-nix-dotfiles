@@ -37,7 +37,7 @@ xkb_symbols "basic" {
     key <AE12> { [ equal,        plus                                 ] };
 
     // --- JIS-specific: Yen key (between AE12 and backspace on JIS) ---
-    key <AE13> { [ yen,          EuroSign                             ] };
+    key <AE13> { [ backslash,    bar,          yen                   ] };
 
     // --- Top row: Colemak-DH ---
     // Q W F P B   J L U Y ;
