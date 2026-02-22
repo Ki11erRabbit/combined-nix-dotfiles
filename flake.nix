@@ -20,7 +20,7 @@
         };
         mango = {
             url = "github:DreamMaoMao/mango";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "unstable-pkgs";
         };
     };
     outputs = inputs@{ self, nixpkgs, home-manager, unstable-pkgs, old-pkgs, zen-browser, mango, ... }: 

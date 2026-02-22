@@ -163,7 +163,7 @@ in {
         glibc
         glibcInfo
         libcxx
-        linux-manual
+        #linux-manual
         man-pages
         openblas
         system76-keyboard-configurator
@@ -202,7 +202,7 @@ in {
     
     programs.kdeconnect.enable = true;
 
-    programs.river.enable = true;
+    programs.river-classic.enable = true;
 
     programs.nix-ld.enable = true;
     programs.nix-ld.libraries = with pkgs; [
@@ -261,7 +261,10 @@ in {
     services.mullvad-vpn.enable = true;
     services.gnome.gnome-keyring.enable = true;
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    xdg.portal = {
+        extraPortals = [pkgs.xdg-desktop-portal-cosmic];
+        configPackages = [ pkgs.cosmic-session ];
+    };
 
     xdg.portal.wlr.enable = true;
     xdg.portal.config = {
