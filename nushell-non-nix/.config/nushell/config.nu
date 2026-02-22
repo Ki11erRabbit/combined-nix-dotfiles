@@ -102,9 +102,9 @@ def --env y [...args] {
   rm -fp $tmp
 }
 
+
 alias "bat" = bat --style plain
 alias "batf" = bat --style full
-#alias "cd" = z
 alias "cp" = cp -iv
 alias "emacs" = emacsclient -c -a "emacs"
 alias "grep" = grep --color=auto
@@ -117,3 +117,5 @@ source $"($nu.cache-dir)/carapace.nu"
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 source ~/.zoxide.nu
+alias "cd" = z
+source $"($nu.home-dir)/.cargo/env.nu"
