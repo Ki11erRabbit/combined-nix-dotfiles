@@ -1,0 +1,121 @@
+# Common ls aliases and sort them by type and then name
+# Inspired by https://github.com/nushell/nushell/issues/7190
+def lla [...args: string] { 
+  let path = if ($args | is-empty) { ["."] } else { $args }
+  ls -la ...$path | sort-by type name -i 
+}
+def la [...args: string] { 
+  let path = if ($args | is-empty) { ["."] } else { $args }
+  ls -a ...$path | sort-by type name -i 
+}
+def ll [...args: string] { 
+  let path = if ($args | is-empty) { ["."] } else { $args }
+  ls -l ...$path | sort-by type name -i 
+}
+def l [...args: string] { 
+  let path = if ($args | is-empty) { ["."] } else { $args }
+  ls ...$path | sort-by type name -i 
+}
+# Completions
+# mainly pieced together from https://www.nushell.sh/cookbook/external_completers.html
+# carapce completions https://www.nushell.sh/cookbook/external_completers.html#carapace-completer
+# + fix https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
+# enable the package and integration bellow
+let carapace_completer = {|spans|
+  carapace $spans.0 nushell ...$spans
+  | from json
+  | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
+}
+# some completions are only available through a bridge
+# eg. tailscale
+# https://carapace-sh.github.io/carapace-bin/setup.html#nushell
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+# fish completions https://www.nushell.sh/cookbook/external_completers.html#fish-completer
+let fish_completer = {|spans|
+  fish --command $'complete "--do-complete=($spans | str join " ")"'
+  | $"value(char tab)description(char newline)" + $in
+  | from tsv --flexible --no-infer
+}
+# zoxide completions https://www.nushell.sh/cookbook/external_completers.html#zoxide-completer
+let zoxide_completer = {|spans|
+    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
+}
+# multiple completions
+# the default will be carapace, but you can also switch to fish
+# https://www.nushell.sh/cookbook/external_completers.html#alias-completions
+let multiple_completers = {|spans|
+  ## alias fixer start
+  let expanded_alias = scope aliases
+  | where name == $spans.0
+  | get 0?.expansion
+  
+  let spans = if $expanded_alias != null {
+    $spans
+    | skip 1
+    | prepend ($expanded_alias | split row ' ' | take 1)
+  } else {
+    $spans
+  }
+  ## alias fixer end
+  
+  let completer = match $spans.0 {
+    __zoxide_z | __zoxide_zi => $zoxide_completer,
+    nvim | vim | vi | nano | emacs | code => null,
+    _ => $carapace_completer
+  }
+  
+  if $completer == null {
+    null
+  } else {
+    do $completer $spans
+  }
+}
+$env.config = {
+  show_banner: false,
+  completions: {
+    case_sensitive: false # case-sensitive completions
+    quick: true           # set to false to prevent auto-selecting completions
+    partial: true         # set to false to prevent partial filling of the prompt
+    algorithm: "fuzzy"    # prefix or fuzzy
+    external: {
+      # set to false to prevent nushell looking into $env.PATH to find more suggestions
+      enable: true 
+      # set to lower can improve completion performance at the cost of omitting some options
+      max_results: 100 
+      completer: $multiple_completers
+    }
+  }
+} 
+$env.PATH = ($env.PATH | 
+  split row (char esep) |
+  prepend /home/myuser/.apps |
+  append /usr/bin/env
+)
+
+def --env y [...args] {
+  let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+  ^yazi ...$args --cwd-file $tmp
+  let cwd = (open $tmp)
+  if $cwd != $env.PWD and ($cwd | path exists) {
+    cd $cwd
+  }
+  rm -fp $tmp
+}
+
+
+alias "bat" = bat --style plain
+alias "batf" = bat --style full
+alias "cp" = cp -iv
+alias "emacs" = emacsclient -c -a "emacs"
+alias "grep" = grep --color=auto
+alias "mv" = mv -iv
+alias "rm" = trash -v
+
+
+source $"($nu.cache-dir)/carapace.nu"
+
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+source ~/.zoxide.nu
+alias "cd" = z
+source $"($nu.home-dir)/.cargo/env.nu"
