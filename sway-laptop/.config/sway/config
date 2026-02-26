@@ -16,7 +16,6 @@ client.urgent #d20f39 #eff1f5 #4c4f69 #d20f39 #d20f39
 client.placeholder #9ca0b0 #eff1f5 #4c4f69 #9ca0b0 #9ca0b0
 client.background #eff1f5
 
-bindsym Mod4+0 exec 'swaysome focus 0'
 bindsym Mod4+1 exec 'swaysome focus 1'
 bindsym Mod4+2 exec 'swaysome focus 2'
 bindsym Mod4+3 exec 'swaysome focus 3'
@@ -31,7 +30,6 @@ bindsym Mod4+Ctrl+i resize set height -10pt
 bindsym Mod4+Ctrl+m resize set width -10pt
 bindsym Mod4+Ctrl+n resize set width 10pt
 bindsym Mod4+Return exec alacritty
-bindsym Mod4+Shift+0 exec 'swaysome move 0'
 bindsym Mod4+Shift+1 exec 'swaysome move 1'
 bindsym Mod4+Shift+2 exec 'swaysome move 2'
 bindsym Mod4+Shift+3 exec 'swaysome move 3'
@@ -54,7 +52,7 @@ bindsym Mod4+Shift+r reload
 bindsym Mod4+Shift+s exec grimshot copy area
 bindsym Mod4+Alt+space floating toggle
 bindsym Mod4+a layout stacking
-bindsym Mod4+d exec bemenu-run
+bindsym Mod4+d exec qs -c noctalia-shell ipc call launcher toggle
 bindsym Mod4+e focus up
 bindsym Mod4+f fullscreen toggle
 bindsym Mod4+h splith
@@ -70,6 +68,8 @@ bindsym Mod4+Shift+space focus mode_toggle
 bindsym Mod4+t layout tabbed
 bindsym Mod4+g layout toggle split
 bindsym Mod4+v splitv
+bindsym Mod4+l exec /home/ki11errabbit/.local/bin/change_workspace.sh left
+bindsym Mod4+u exec /home/ki11errabbit/.local/bin/change_workspace.sh right
 bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02- -l 1.0'
 bindsym XF86AudioMute exec 'wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle'
 bindsym XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0'
@@ -99,24 +99,20 @@ input "type:keyboard" {
     xkb_options "grp:win_space_toggle"
 }
 
+
+exec /home/ki11errabbit/.local/bin/configure-monitors.sh
+
+exec /home/ki11errabbit/.local/bin/setup-wallpaper.sh
+
+exec /home/ki11errabbit/.local/bin/setup-swayidle.sh
+
+exec /home/ki11errabbit/.local/bin/setup-keyboard.sh
+
 exec 'qs -c noctalia-shell --no-duplicate'
-
-exec fnott
-
-exec configure-monitors.sh
-
-exec setup-wallpaper.sh
-
-exec setup-swayidle.sh
-
-exec setup-keyboard.sh
 
 exec nm-applet
 
 exec blueman-applet
-
-exec kdeconnect-indicator
-
 
 workspace "1" output "eDP-1"
 workspace "2" output "eDP-1"
