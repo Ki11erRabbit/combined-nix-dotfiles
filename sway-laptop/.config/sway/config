@@ -108,6 +108,8 @@ exec /home/ki11errabbit/.local/bin/setup-swayidle.sh
 
 exec /home/ki11errabbit/.local/bin/setup-keyboard.sh
 
+exec libinput-gestures-setup stop desktop autostart start
+
 exec 'qs -c noctalia-shell --no-duplicate'
 
 exec nm-applet
