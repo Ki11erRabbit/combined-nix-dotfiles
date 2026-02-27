@@ -137,3 +137,9 @@ workspace "18" output "HDMI-A-1"
 workspace "19" output "HDMI-A-1"
 
 exec swaysome init 1
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec /usr/lib/xdg-desktop-portal-wlr &
+exec /usr/lib/xdg-desktop-portal &
+exec systemctl --user restart emacs
