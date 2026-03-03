@@ -62,3 +62,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
 
 bindkey '^[[3~' delete-char
 
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"

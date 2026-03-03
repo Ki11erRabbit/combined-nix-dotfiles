@@ -70,12 +70,25 @@ bindsym Mod4+g layout toggle split
 bindsym Mod4+v splitv
 bindsym Mod4+l exec /home/ki11errabbit/.local/bin/change_workspace.sh left
 bindsym Mod4+u exec /home/ki11errabbit/.local/bin/change_workspace.sh right
-bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02- -l 1.0'
-bindsym XF86AudioMute exec 'wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle'
-bindsym XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0'
-bindsym XF86_AudioMicMute exec 'wpctl set-volume @DEFAULT_AUDIO_SOURCE@ toggle'
-bindsym XF86MonBrightnessUp exec 'brightnessctl set 5%+'
-bindsym XF86MonBrightnessDown exec 'brightnessctl set 5%-'
+#bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02- -l 1.0'
+#bindsym XF86AudioMute exec 'wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle'
+#bindsym XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0'
+#bindsym XF86_AudioMicMute exec 'wpctl set-volume @DEFAULT_AUDIO_SOURCE@ toggle'
+#bindsym XF86MonBrightnessUp exec 'brightnessctl set 5%+'
+#bindsym XF86MonBrightnessDown exec 'brightnessctl set 5%-'
+
+bindsym XF86AudioLowerVolume exec 'qs -c noctalia-shell ipc call volume decrease'
+bindsym XF86AudioMute exec 'qs -c noctalia-shell ipc call volume muteOutput'
+bindsym XF86AudioRaiseVolume exec 'qs -c noctalia-shell ipc call volume increase' 
+bindsym XF86_AudioMicMute exec 'qs -c noctalia-shell ipc call volume muteInput'
+bindsym XF86MonBrightnessUp exec 'qs -c noctalia-shell ipc call brightness increase'
+bindsym XF86MonBrightnessDown exec 'qs -c noctalia-shell ipc call brightness decrease'
+bindsym XF86Sleep exec 'qs -c noctalia-shell ipc call sessionMenu lockAndSuspend'
+bindsym XF86AudioPlay exec 'qs -c noctalia-shell ipc call media playPause'
+bindsym XF86AudioPrev exec 'qs -c noctalia-shell ipc call media previous'
+bindsym XF86AudioNext exec 'qs -c noctalia-shell ipc call media next'
+bindsym XF86Search exec qs -c noctalia-shell ipc call launcher toggle
+bindsym XF86LaunchA exec qs -c noctalia-shell ipc call controlCenter toggle
 
 mode "resize" {
   bindsym Down resize grow height 10 px
@@ -108,7 +121,6 @@ exec /home/ki11errabbit/.local/bin/setup-swayidle.sh
 
 exec /home/ki11errabbit/.local/bin/setup-keyboard.sh
 
-exec libinput-gestures-setup stop desktop autostart start
 
 exec 'qs -c noctalia-shell --no-duplicate'
 
@@ -138,8 +150,9 @@ workspace "19" output "HDMI-A-1"
 
 exec swaysome init 1
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
 exec /usr/lib/xdg-desktop-portal-wlr &
 exec /usr/lib/xdg-desktop-portal &
 exec systemctl --user restart emacs
+exec libinput-gestures-setup stop desktop autostart start
