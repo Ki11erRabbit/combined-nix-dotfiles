@@ -111,7 +111,6 @@
 
             PATH = "$PATH:/home/ki11errabbit/.cabal/bin:/home/ki11errabbit/.local/bin:$PATH:/home/ki11errabbit/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/home/ki11errabbit/.cargo/bin";
         };
-        initContent = builtins.readFile(../files/zsh);
         #initContent = ''
 #if [[ -o interactive ]]; then
     #exec nu
