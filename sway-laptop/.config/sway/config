@@ -1,0 +1,158 @@
+font pango:monospace 8.000000
+floating_modifier Mod4
+default_border normal 2
+default_floating_border normal 2
+hide_edge_borders none
+focus_wrapping no
+focus_follows_mouse yes
+focus_on_window_activation smart
+mouse_warping output
+workspace_layout default
+workspace_auto_back_and_forth no
+client.focused #ea76cb #eff1f5 #4c4f69 #ea76cb #ea76cb
+client.focused_inactive #9ca0b0 #eff1f5 #4c4f69 #9ca0b0 #9ca0b0
+client.unfocused #9ca0b0 #eff1f5 #4c4f69 #9ca0b0 #9ca0b0
+client.urgent #d20f39 #eff1f5 #4c4f69 #d20f39 #d20f39
+client.placeholder #9ca0b0 #eff1f5 #4c4f69 #9ca0b0 #9ca0b0
+client.background #eff1f5
+
+bindsym Mod4+1 exec 'swaysome focus 1'
+bindsym Mod4+2 exec 'swaysome focus 2'
+bindsym Mod4+3 exec 'swaysome focus 3'
+bindsym Mod4+4 exec 'swaysome focus 4'
+bindsym Mod4+5 exec 'swaysome focus 5'
+bindsym Mod4+6 exec 'swaysome focus 6'
+bindsym Mod4+7 exec 'swaysome focus 7'
+bindsym Mod4+8 exec 'swaysome focus 8'
+bindsym Mod4+9 exec 'swaysome focus 9'
+bindsym Mod4+Ctrl+e resize set height 10pt
+bindsym Mod4+Ctrl+i resize set height -10pt
+bindsym Mod4+Ctrl+m resize set width -10pt
+bindsym Mod4+Ctrl+n resize set width 10pt
+bindsym Mod4+Return exec alacritty
+bindsym Mod4+Shift+1 exec 'swaysome move 1'
+bindsym Mod4+Shift+2 exec 'swaysome move 2'
+bindsym Mod4+Shift+3 exec 'swaysome move 3'
+bindsym Mod4+Shift+4 exec 'swaysome move 4'
+bindsym Mod4+Shift+5 exec 'swaysome move 5'
+bindsym Mod4+Shift+6 exec 'swaysome move 6'
+bindsym Mod4+Shift+7 exec 'swaysome move 7'
+bindsym Mod4+Shift+8 exec 'swaysome move 8'
+bindsym Mod4+Shift+9 exec 'swaysome move 9'
+bindsym Mod4+Shift+Return exec emacsclient -c -a 'emacs'
+bindsym Mod4+Shift+comma exec 'swaysome prev-output'
+bindsym Mod4+Shift+e move up
+bindsym Mod4+Shift+i move right
+bindsym Mod4+Shift+m move left
+bindsym Mod4+Shift+minus move scratchpad
+bindsym Mod4+Shift+n move down
+bindsym Mod4+Shift+period exec 'swaysome next-output'
+bindsym Mod4+Shift+q exec swaymsg exit
+bindsym Mod4+Shift+r reload
+bindsym Mod4+Shift+s exec grimshot copy area
+bindsym Mod4+Alt+space floating toggle
+bindsym Mod4+a layout stacking
+bindsym Mod4+d exec qs -c noctalia-shell ipc call launcher toggle
+bindsym Mod4+e focus up
+bindsym Mod4+f fullscreen toggle
+bindsym Mod4+h splith
+bindsym Mod4+i focus right
+bindsym Mod4+m focus left
+bindsym Mod4+minus scratchpad show
+bindsym Mod4+n focus down
+bindsym Mod4+p layout toggle split
+bindsym Mod4+q kill
+bindsym Mod4+r exec nemo
+bindsym Mod4+s exec grimshot save area
+bindsym Mod4+Shift+space focus mode_toggle
+bindsym Mod4+t layout tabbed
+bindsym Mod4+g layout toggle split
+bindsym Mod4+v splitv
+bindsym Mod4+l exec /home/ki11errabbit/.local/bin/change_workspace.sh left
+bindsym Mod4+u exec /home/ki11errabbit/.local/bin/change_workspace.sh right
+#bindsym XF86AudioLowerVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02- -l 1.0'
+#bindsym XF86AudioMute exec 'wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle'
+#bindsym XF86AudioRaiseVolume exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+ -l 1.0'
+#bindsym XF86_AudioMicMute exec 'wpctl set-volume @DEFAULT_AUDIO_SOURCE@ toggle'
+#bindsym XF86MonBrightnessUp exec 'brightnessctl set 5%+'
+#bindsym XF86MonBrightnessDown exec 'brightnessctl set 5%-'
+
+bindsym XF86AudioLowerVolume exec 'qs -c noctalia-shell ipc call volume decrease'
+bindsym XF86AudioMute exec 'qs -c noctalia-shell ipc call volume muteOutput'
+bindsym XF86AudioRaiseVolume exec 'qs -c noctalia-shell ipc call volume increase' 
+bindsym XF86_AudioMicMute exec 'qs -c noctalia-shell ipc call volume muteInput'
+bindsym XF86MonBrightnessUp exec 'qs -c noctalia-shell ipc call brightness increase'
+bindsym XF86MonBrightnessDown exec 'qs -c noctalia-shell ipc call brightness decrease'
+bindsym XF86Sleep exec 'qs -c noctalia-shell ipc call sessionMenu lockAndSuspend'
+bindsym XF86AudioPlay exec 'qs -c noctalia-shell ipc call media playPause'
+bindsym XF86AudioPrev exec 'qs -c noctalia-shell ipc call media previous'
+bindsym XF86AudioNext exec 'qs -c noctalia-shell ipc call media next'
+bindsym XF86Search exec qs -c noctalia-shell ipc call launcher toggle
+bindsym XF86LaunchA exec qs -c noctalia-shell ipc call controlCenter toggle
+
+mode "resize" {
+  bindsym Down resize grow height 10 px
+  bindsym Escape mode default
+  bindsym Left resize shrink width 10 px
+  bindsym Return mode default
+  bindsym Right resize grow width 10 px
+  bindsym Up resize shrink height 10 px
+  bindsym e resize shrink height 10 px
+  bindsym i resize grow width 10 px
+  bindsym m resize shrink width 10 px
+  bindsym n resize grow height 10 px
+}
+
+gaps inner 10
+gaps outer 10
+
+input "type:keyboard" {
+    xkb_layout "us,us"
+    xkb_variant "colemak_dh ,"
+    xkb_options "grp:win_space_toggle"
+}
+
+
+exec /home/ki11errabbit/.local/bin/configure-monitors.sh
+
+exec /home/ki11errabbit/.local/bin/setup-wallpaper.sh
+
+exec /home/ki11errabbit/.local/bin/setup-swayidle.sh
+
+exec /home/ki11errabbit/.local/bin/setup-keyboard.sh
+
+
+exec 'qs -c noctalia-shell --no-duplicate'
+
+exec nm-applet
+
+exec blueman-applet
+
+workspace "1" output "eDP-1"
+workspace "2" output "eDP-1"
+workspace "3" output "eDP-1"
+workspace "4" output "eDP-1"
+workspace "5" output "eDP-1"
+workspace "6" output "eDP-1"
+workspace "7" output "eDP-1"
+workspace "8" output "eDP-1"
+workspace "9" output "eDP-1"
+workspace "10" output "HDMI-A-1"
+workspace "11" output "HDMI-A-1"
+workspace "12" output "HDMI-A-1"
+workspace "13" output "HDMI-A-1"
+workspace "14" output "HDMI-A-1"
+workspace "15" output "HDMI-A-1"
+workspace "16" output "HDMI-A-1"
+workspace "17" output "HDMI-A-1"
+workspace "18" output "HDMI-A-1"
+workspace "19" output "HDMI-A-1"
+
+exec swaysome init 1
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+exec /usr/lib/xdg-desktop-portal-wlr &
+exec /usr/lib/xdg-desktop-portal &
+exec systemctl --user restart emacs
+exec libinput-gestures-setup stop desktop autostart start
