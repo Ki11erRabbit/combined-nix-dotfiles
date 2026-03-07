@@ -7,7 +7,7 @@ feh --bg-fill /home/ki11errabbit/Pictures/Wallpapers/wp14593283-windows-xp-anime
 feh --bg-fill /home/ki11errabbit/Pictures/Wallpaper/78657213_p0.jpg
 feh --bg-fill /home/ki11errabbit/Downloads/__astolfo_and_sieg_fate_and_1_more_drawn_by_haoro__43716a018163d88756f849fb040e765d.jpg
 
-if cat /proc/bus/input/devices | grep -qi "japanese\|jis\|AT Translated Set 2 keyboard"; then
+if cat /proc/bus/input/devices | grep -qi "Panasonic"; then
     echo "JIS keyboard detected"
     setxkbmap -layout jis_colemak_dh
 else
