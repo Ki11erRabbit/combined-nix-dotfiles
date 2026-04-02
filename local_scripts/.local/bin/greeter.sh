@@ -1,3 +1,3 @@
 #!/bin/sh
 
-quickshell -n -c ~/.config/quickshell/getting-ready
+quickshell -c ~/.config/quickshell/getting-ready

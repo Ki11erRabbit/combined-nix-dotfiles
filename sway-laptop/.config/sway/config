@@ -122,6 +122,7 @@ exec /home/ki11errabbit/.local/bin/setup-swayidle.sh
 exec /home/ki11errabbit/.local/bin/setup-keyboard.sh
 
 
+exec 'quickshell -n -c /home/ki11errabbit/.config/quickshell/getting-ready/'
 exec 'qs -c noctalia-shell --no-duplicate'
 
 exec nm-applet
