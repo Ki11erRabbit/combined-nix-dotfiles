@@ -45,6 +45,17 @@ Singleton {
         ":3",
         "ᗜˬᗜ",
         "how to bash cat with pipe",
+        "Don't forget food and water :)",
+        "UwU",
+        "Do you think God stays in heaven because he, too, lives in fear of what he's created here on earth?",
+        "Chat? Is this real?",
+        "People die if they are killed.",
+        "shikanoko nokonoko koshitantan",
+        "お前はもう死んでいる",
+        "If I can do it tomorrow, I'll do it today!",
+        "Remember to kiss the homies goodnight",
+
+
     ]
 
     // ──────────────────────────────────────────────────────────────
