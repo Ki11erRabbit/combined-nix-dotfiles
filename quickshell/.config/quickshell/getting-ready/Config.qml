@@ -54,8 +54,7 @@ Singleton {
         "お前はもう死んでいる",
         "If I can do it tomorrow, I'll do it today!",
         "Remember to kiss the homies goodnight",
-
-
+        "Needs more cowbell",
     ]
 
     // ──────────────────────────────────────────────────────────────
