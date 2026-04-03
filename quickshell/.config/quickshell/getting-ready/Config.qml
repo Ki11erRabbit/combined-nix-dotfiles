@@ -55,6 +55,21 @@ Singleton {
         "If I can do it tomorrow, I'll do it today!",
         "Remember to kiss the homies goodnight",
         "Needs more cowbell",
+        "mi casa su casa",
+        "SUBLIME",
+        "Don't cry over spilled milk",
+        "Don't throw out the baby with the bath water",
+        "Be gay do crime",
+        "Check your posture",
+        "We're all mad here",
+        "Don't forget to stand up and stretch once in a while!",
+        "Got any grapes?",
+        "This text is black. If you see pink, you're actually a cute trans girl :3",
+        "awww the scrunkly 🥰🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺 double tap now if you'd scrunkly the when😆",
+        "ʕ.•⁠ᴥ-.ʔ~♪",
+        "Crazy? I was crazy once. They put me in a room. A rubber room. A rubber room with rats. They put me in a rubber room with rubber rats. Rubber rats? I hate rubber rats. They make me crazy.",
+        "La vida es dura, pero más dura es mi verdura B)",
+        "Pump it up kitty",
     ]
 
     // ──────────────────────────────────────────────────────────────
