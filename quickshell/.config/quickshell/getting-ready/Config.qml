@@ -40,6 +40,7 @@ Singleton {
     readonly property var messages: [
         "You're such a good girl Alice. Keep it up!",
         "You're such a good girl",
+        "This text is black. If you see pink, you're actually a cute trans girl :3",
         "Life cold and hard, tiddies soft and warm",
         "meow meow meow meow meow",
         ":3",
@@ -64,12 +65,12 @@ Singleton {
         "We're all mad here",
         "Don't forget to stand up and stretch once in a while!",
         "Got any grapes?",
-        "This text is black. If you see pink, you're actually a cute trans girl :3",
         "awww the scrunkly 🥰🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺 double tap now if you'd scrunkly the when😆",
         "ʕ.•⁠ᴥ-.ʔ~♪",
         "Crazy? I was crazy once. They put me in a room. A rubber room. A rubber room with rats. They put me in a rubber room with rubber rats. Rubber rats? I hate rubber rats. They make me crazy.",
         "La vida es dura, pero más dura es mi verdura B)",
         "Pump it up kitty",
+        "When you try to save a damsel in distress, all you get is a distressed damsel",
     ]
 
     // ──────────────────────────────────────────────────────────────
