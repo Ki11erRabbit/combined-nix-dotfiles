@@ -71,6 +71,13 @@ Singleton {
         "La vida es dura, pero más dura es mi verdura B)",
         "Pump it up kitty",
         "When you try to save a damsel in distress, all you get is a distressed damsel",
+        "Don't be mean; we don't have to be mean, cuz, remember, no matter where you go, there you are",
+        "shine bright",
+        "Gentlemen, you can't fight in here! This is the War Room!",
+        "The atonement of Jesus Christ brings clarity into our lives no matter how many other concerns we have",
+        "Sometimes, we need faith in Jesus Christ that all will work out in the end",
+        "See each other as children of God who belong to each other",
+        "No one of us alone can change the world, but each of us can have an influence on the world",
     ]
 
     // ──────────────────────────────────────────────────────────────
