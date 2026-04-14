@@ -115,32 +115,32 @@
     xdg.mimeApps = {
         enable = true;
         associations.added = {
-            "application/x-extension-html" = [ "zen.desktop" ];
-            "application/x-extension-htm" = [ "zen.desktop" ];
-            "application/x-extension-xhtml" = [ "zen.desktop" ];
-            "application/x-extension-shtml" = [ "zen.desktop" ];
-            "application/x-extension-xht" = [ "zen.desktop" ];
-            "application/xhtml+xml" = [ "zen.desktop" ];
-            "text/html" = [ "zen.desktop" ];
-            "x-scheme-handler/about" = [ "zen.desktop" ];
-            "x-scheme-handler/attachment" = [ "zen.desktop" ];
-            "x-scheme-handler/chrome" = [ "zen.desktop" ];
-            "x-scheme-handler/http" = [ "zen.desktop" ];
-            "x-scheme-handler/https" = [ "zen.desktop" ];
+            "application/x-extension-html" = [ "zen-beta.desktop" ];
+            "application/x-extension-htm" = [ "zen-beta.desktop" ];
+            "application/x-extension-xhtml" = [ "zen-beta.desktop" ];
+            "application/x-extension-shtml" = [ "zen-beta.desktop" ];
+            "application/x-extension-xht" = [ "zen-beta.desktop" ];
+            "application/xhtml+xml" = [ "zen-beta.desktop" ];
+            "text/html" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/about" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/attachment" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/chrome" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/http" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/https" = [ "zen-beta.desktop" ];
         };
         defaultApplications = {
-            "application/x-extension-html" = [ "zen.desktop" ];
-            "application/x-extension-htm" = [ "zen.desktop" ];
-            "application/x-extension-xhtml" = [ "zen.desktop" ];
-            "application/x-extension-shtml" = [ "zen.desktop" ];
-            "application/x-extension-xht" = [ "zen.desktop" ];
-            "application/xhtml+xml" = [ "zen.desktop" ];
-            "text/html" = [ "zen.desktop" ];
-            "x-scheme-handler/about" = [ "zen.desktop" ];
-            "x-scheme-handler/attachment" = [ "zen.desktop" ];
-            "x-scheme-handler/chrome" = [ "zen.desktop" ];
-            "x-scheme-handler/http" = [ "zen.desktop" ];
-            "x-scheme-handler/https" = [ "zen.desktop" ];
+            "application/x-extension-html" = [ "zen-beta.desktop" ];
+            "application/x-extension-htm" = [ "zen-beta.desktop" ];
+            "application/x-extension-xhtml" = [ "zen-beta.desktop" ];
+            "application/x-extension-shtml" = [ "zen-beta.desktop" ];
+            "application/x-extension-xht" = [ "zen-beta.desktop" ];
+            "application/xhtml+xml" = [ "zen-beta.desktop" ];
+            "text/html" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/about" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/attachment" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/chrome" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/http" = [ "zen-beta.desktop" ];
+            "x-scheme-handler/https" = [ "zen-beta.desktop" ];
 
         };
     };

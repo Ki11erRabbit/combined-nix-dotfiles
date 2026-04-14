@@ -345,8 +345,8 @@
             "video/avi" = [ "mpv.desktop" ];
             "video/x-flv" = [ "mpv.desktop" ];
             "video/quicktime" = [ "mpv.desktop" ];
-            "inode/directory" = [ "com.system76.CosmicFiles.desktop" ];
-            "x-scheme-handler/terminal" = [ "com.system76.CosmicTerm.desktop" ];
+            "inode/directory" = [ "org.kde.dolphin.desktop" ];
+            "x-scheme-handler/terminal" = [ "Alacritty.desktop" ];
             "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
             "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
             "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
@@ -374,10 +374,26 @@
             "application/x-lz4" = [ "org.gnome.FileRoller.desktop" ];
             "application/x-lz4-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
             "application/x-krita" = [ "krita_kra.desktop" ];
+            "image/jpeg" = [ "imv.desktop" ];
+            "image/jpg" = [ "imv.desktop" ];
+            "image/pjpeg" = [ "imv.desktop" ];
+            "image/jxl" = [ "imv.desktop" ];
+            "image/png" = [ "imv.desktop" ];
+            "image/x-png" = [ "imv.desktop" ];
+            "image/x-farbfeld" = [ "imv.desktop" ];
+            "image/tiff-fx" = [ "imv.desktop" ];
+            "image/svg+xml" = [ "imv.desktop" ];
+            "image/gif" = [ "imv.desktop" ];
+            "image/bmp" = [ "imv.desktop" ];
+            "image/x-bmp" = [ "imv.desktop" ];
+            "image/heif" = [ "imv.desktop" ];
+            "image/avif" = [ "imv.desktop" ];
+            "image/webp" = [ "imv.desktop" ];
+            "image/qoi" = [ "imv.desktop" ];
         };
         defaultApplications = {
-            "x-scheme-handler/terminal" = [ "com.system76.CosmicTerm.desktop" ];
-            "application/x-terminal-emulator" = [ "com.system76.CosmicTerm.desktop" ];
+            "x-scheme-handler/terminal" = [ "Alacritty.desktop" ];
+            "application/x-terminal-emulator" = [ "Alacritty.desktop" ];
             "application/pdf" = [ "okularApplication_pdf.desktop" ];
             "application/xml" = [ "emacsclient.desktop" ];
             "application/x-shellscript" = [ "emacsclient.desktop" ];
@@ -431,7 +447,7 @@
             "video/avi" = [ "mpv.desktop" ];
             "video/x-flv" = [ "mpv.desktop" ];
             "video/quicktime" = [ "mpv.desktop" ];
-            "inode/directory" = [ "com.system76.CosmicFiles.desktop" ];
+            "inode/directory" = [ "org.kde.dolphin.desktop" ];
             "x-scheme-handler/mailto" = [ "thunderbird.desktop" ];
             "x-scheme-handler/msteams" = [ "teams-for-linux.desktop" ];
             "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
@@ -459,7 +475,22 @@
             "application/x-lz4" = [ "org.gnome.FileRoller.desktop" ];
             "application/x-lz4-compressed-tar" = [ "org.gnome.FileRoller.desktop" ];
             "application/x-krita" = [ "krita_kra.desktop" ];
-
+            "image/jpeg" = [ "imv.desktop" ];
+            "image/jpg" = [ "imv.desktop" ];
+            "image/pjpeg" = [ "imv.desktop" ];
+            "image/jxl" = [ "imv.desktop" ];
+            "image/png" = [ "imv.desktop" ];
+            "image/x-png" = [ "imv.desktop" ];
+            "image/x-farbfeld" = [ "imv.desktop" ];
+            "image/tiff-fx" = [ "imv.desktop" ];
+            "image/svg+xml" = [ "imv.desktop" ];
+            "image/gif" = [ "imv.desktop" ];
+            "image/bmp" = [ "imv.desktop" ];
+            "image/x-bmp" = [ "imv.desktop" ];
+            "image/heif" = [ "imv.desktop" ];
+            "image/avif" = [ "imv.desktop" ];
+            "image/webp" = [ "imv.desktop" ];
+            "image/qoi" = [ "imv.desktop" ];
         };
     };
 }
