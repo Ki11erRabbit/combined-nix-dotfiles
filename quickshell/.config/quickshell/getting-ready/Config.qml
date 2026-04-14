@@ -78,6 +78,7 @@ Singleton {
         "Sometimes, we need faith in Jesus Christ that all will work out in the end",
         "See each other as children of God who belong to each other",
         "No one of us alone can change the world, but each of us can have an influence on the world",
+        "WHY IS THERE CODE??? MAKE AN .EXE FILE AND GIVE IT TO ME. Stupid smelly nerds",
     ]
 
     // ──────────────────────────────────────────────────────────────
