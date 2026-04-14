@@ -288,8 +288,8 @@ in {
     services.gnome.gnome-keyring.enable = true;
     xdg.portal.enable = true;
     xdg.portal = {
-        extraPortals = [pkgs.xdg-desktop-portal-cosmic];
-        configPackages = [ pkgs.cosmic-session ];
+        extraPortals = [pkgs.xdg-desktop-portal-wlr];
+        #configPackages = [ pkgs.cosmic-session ];
     };
 
     xdg.portal.wlr.enable = true;
