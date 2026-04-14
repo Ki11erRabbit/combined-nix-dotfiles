@@ -1,12 +1,12 @@
 [Plymouth Theme]
-Name=BLAHAJ
+Name=blahaj
 Description=A Plymouth theme featuring IKEA's 1m soft toy shark.
 ModuleName=two-step
 
 [two-step]
 Font=Cantarell 12
 TitleFont=Cantarell Light 30
-ImageDir=/usr/share/plymouth/themes/blåhaj
+ImageDir=/usr/share/plymouth/themes/blahaj
 DialogHorizontalAlignment=.5
 DialogVerticalAlignment=.382
 TitleHorizontalAlignment=.5
