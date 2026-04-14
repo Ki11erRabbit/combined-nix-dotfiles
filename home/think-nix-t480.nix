@@ -16,12 +16,13 @@
         burpsuite
         blender
         arduino-ide
+        kdePackages.qtmultimedia
     ];
     programs.zen-browser.enable = true;
 
     wayland.windowManager.mango = {
         enable = true;
-        settings = builtins.readFile(../mangowc-laptop/.config/mango/config.conf);
+        settings = builtins.readFile(../mangowc-laptop-nix/.config/mango/config.conf);
         autostart_sh = "";
     };
     

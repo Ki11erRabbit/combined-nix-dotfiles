@@ -52,6 +52,7 @@
                 modules = [
                     mango.hmModules.mango
                     zen-browser.homeModules.beta
+                    noctalia.homeModules.default
                     ./home/${username}.nix
                     ./home/${hostname}.nix
                     ./home/${platform}.nix
