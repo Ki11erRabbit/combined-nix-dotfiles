@@ -19,19 +19,17 @@ let dwl-source = pkgs.fetchFromGitHub {
       });
     plymouth-blahaj = pkgs.stdenv.mkDerivation {
         name = "blåhaj";
-        src = pkgs.fetchFromGitHub {
-          owner = "190n";
-          repo = "plymouth-blahaj";
-          rev = "main";
-          sha256 = "sha256-1hN9Yr6eM1n4k/AUHtKBlOMCchYgpGEcOWBT5pv3snE=";
+        src = pkgs.fetchurl {
+          url = "https://github.com/190n/plymouth-blahaj/releases/download/v1.0.0/blahaj.tar.gz";
+          sha256 = "sha256-JSCu/3SK1FlSiRwxnjQvHtPGGkPc6u/YjaoIvw0PU8A=";
         };
+        # tarballs are auto-extracted, so src will already be unpacked
         installPhase = ''
           themedir=$out/share/plymouth/themes/blåhaj
           mkdir -p $themedir
-          cp -r blåhaj/* $themedir/
+          cp -r * $themedir/
         '';
-  };
-
+      };
 in {
     nix.settings.experimental-features = "nix-command flakes";
 
