@@ -318,7 +318,7 @@ in {
         enable = true;
         extraRules = [{
             commands = [{
-                command = "${pkgs.haskellPackages.kmonad}/bin/kmonad";
+                command = "${pkgs.kmonad}/bin/kmonad";
                 options = [ "NOPASSWD" ];
                 }
                 {
@@ -334,7 +334,7 @@ in {
                 options = [ "NOPASSWD" ];
                 }
                 {
-                command = "${pkgs.procps}/bin/pkill ${pkgs.haskellPackages.kmonad}/bin/kmonad";
+                command = "${pkgs.procps}/bin/pkill ${pkgs.kmonad}/bin/kmonad";
                 options = [ "NOPASSWD" ];
                 }
                 ];
