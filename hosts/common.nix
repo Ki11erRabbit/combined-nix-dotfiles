@@ -126,7 +126,7 @@ in {
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.ki11errabbit = {
         isNormalUser = true;
-        description = "Alec Davis";
+        description = "Alice Davis";
         shell = pkgs.zsh;
         extraGroups = [ "networkmanager" "wheel" "libvirtd" "uinput" "input" "cdrom" "video" "docker" "dialout" "podman" ];
         packages = with pkgs; [];
