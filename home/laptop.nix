@@ -47,6 +47,10 @@
             ];
         };
     };
+    
+    programs.noctalia-shell = {
+        enable = true;
+    };
 
 
     wayland.windowManager.sway = {

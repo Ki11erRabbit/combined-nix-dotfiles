@@ -4,7 +4,6 @@
     home.packages = with pkgs; [
         unstable.koka
         unstable.atlauncher
-        unstable.noctalia-shell
     ];
 }
 

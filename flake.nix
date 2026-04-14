@@ -22,8 +22,12 @@
             url = "github:DreamMaoMao/mango";
             inputs.nixpkgs.follows = "unstable-pkgs";
         };
+        noctalia = {
+            url = "github:noctalia-dev/noctalia-shell";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
-    outputs = inputs@{ self, nixpkgs, home-manager, unstable-pkgs, old-pkgs, zen-browser, mango, ... }: 
+    outputs = inputs@{ self, nixpkgs, home-manager, unstable-pkgs, old-pkgs, zen-browser, mango, noctalia, ... }: 
     let 
         mkNixosSystem = system: hostname: platform:
             nixpkgs.lib.nixosSystem {
