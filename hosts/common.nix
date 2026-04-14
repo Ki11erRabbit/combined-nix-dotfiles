@@ -78,6 +78,7 @@ in {
         theme = "catppuccin-latte-pink";
     };
     services.displayManager.sddm.wayland.enable = true;
+    security.pam.services.login.enableGnomeKeyring = true;
     security.pam.services.sddm.enableGnomeKeyring = true;
     services.displayManager.sessionPackages = [
         ((pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
@@ -209,6 +210,8 @@ in {
             accent = "pink";
             loginBackground = true;
         })
+        quickshell
+        
     ];
     
     virtualisation.podman = {

@@ -1,14 +1,9 @@
 // GettingReadyScreen.qml
 // Full-screen "Getting Ready" overlay.
 //
-// Key fixes vs the previous version:
-//   • WlrLayershell attached properties are set in Component.onCompleted so
-//     they only run on Wayland and never crash on X11 or when the import
-//     isn't available at parse time.
-//   • PanelWindow.focusable: true is used (the platform-agnostic way to
-//     request keyboard focus).
-//   • Video and background are loaded via Loader + inline Components so
-//     QtMultimedia is only touched when the user actually sets videoPath.
+// On the primary screen: spinner, message, progress bar, input capture.
+// On secondary screens:  background color/image only, dismissed in sync
+//                        when the primary screen dismisses.
 
 import Quickshell
 import Quickshell.Wayland
@@ -17,102 +12,101 @@ import QtQuick
 PanelWindow {
     id: root
 
+    // Set by shell.qml via Variants
+    property bool isPrimary: true
+
     // ── Full-screen anchors ──────────────────────────────────────────
     anchors.top:    true
     anchors.bottom: true
     anchors.left:   true
     anchors.right:  true
 
-    // Request keyboard focus (platform-agnostic PanelWindow property)
-    focusable: true
+    // Only the primary screen steals keyboard focus
+    focusable: isPrimary
 
-    // No exclusion zone — we're an overlay, not a panel
     exclusionMode: ExclusionMode.Ignore
 
     color: "transparent"
 
-    // Apply WlrLayershell-specific settings safely at runtime,
-    // and imperatively pick the random message so Math.random()
-    // actually runs instead of being treated as a static binding.
     Component.onCompleted: {
         if (WlrLayershell !== null) {
-            WlrLayershell.layer         = WlrLayer.Overlay
-            WlrLayershell.keyboardFocus = WlrKeyboardFocus.Exclusive
+            WlrLayershell.layer = WlrLayer.Overlay
+            if (isPrimary)
+                WlrLayershell.keyboardFocus = WlrKeyboardFocus.Exclusive
+            else
+                WlrLayershell.keyboardFocus = WlrKeyboardFocus.None
         }
-        var msgs = Config.messages
-        chosenMessage = msgs[Math.floor(Math.random() * msgs.length)]
+        if (isPrimary) {
+            var msgs = Config.messages
+            chosenMessage = msgs[Math.floor(Math.random() * msgs.length)]
+        }
     }
 
-    // ── State ────────────────────────────────────────────────────────
-    property bool   dismissed:     false
-    property string chosenMessage: ""   // set imperatively in onCompleted
+    // ── Shared dismiss state via singleton ───────────────────────────
+    // DismissState is a tiny singleton that lets all screen instances
+    // observe and trigger a shared dismissed flag.
 
-    // ── Dismiss ──────────────────────────────────────────────────────
+    property bool dismissed: DismissState.dismissed
+
+    // Watch for dismiss from any screen and fade out
+    onDismissedChanged: {
+        if (dismissed) fadeOut.start()
+    }
+
     function dismiss() {
-        if (!dismissed) {
-            dismissed = true
-            fadeOut.start()
-        }
+        DismissState.dismissed = true
     }
 
-    // ── Overlay item (the thing we fade) ────────────────────────────
+    // ── Only primary needs a random message ─────────────────────────
+    property string chosenMessage: ""
+
+    // ── Overlay ──────────────────────────────────────────────────────
     Item {
         id: overlay
         anchors.fill: parent
-        opacity:      0          // starts transparent; entrance anim below
+        opacity: 0
 
-        // Entrance fade-in
         NumberAnimation on opacity {
-            from:     0.0
-            to:       1.0
-            duration: 600
+            from: 0.0; to: 1.0; duration: 600
             easing.type: Easing.OutQuad
         }
 
-        // ── Keyboard: any key dismisses ──────────────────────────────
-        focus: true
-        Keys.onPressed: (event) => {
-            event.accepted = true
-            root.dismiss()
-        }
+        // Keyboard + mouse capture — primary screen only
+        focus: isPrimary
+        Keys.enabled: isPrimary
+        Keys.onPressed: (event) => { event.accepted = true; root.dismiss() }
 
-        // ── Mouse: any click or scroll dismisses ─────────────────────
         MouseArea {
-            anchors.fill:    parent
+            anchors.fill: parent
             acceptedButtons: Qt.AllButtons
-            onPressed:       root.dismiss()
-            onWheel:         root.dismiss()
+            enabled: isPrimary
+            onPressed: root.dismiss()
+            onWheel:  root.dismiss()
         }
 
         // ── Background ───────────────────────────────────────────────
         Loader {
-            id: bgLoader
             anchors.fill: parent
             sourceComponent:
-                Config.videoPath !== ""               ? videoBackground  :
-                Config.backgroundMode === "image"     ? imageBackground  :
-                                                        colorBackground
+                Config.videoPath !== ""            ? (isPrimary ? videoBackground : colorBackground) :
+                Config.backgroundMode === "image"  ? imageBackground :
+                                                     colorBackground
         }
 
         Component {
             id: colorBackground
-            Rectangle {
-                anchors.fill: parent
-                color:        Config.solidColor
-            }
+            Rectangle { anchors.fill: parent; color: Config.solidColor }
         }
 
         Component {
             id: imageBackground
             Image {
                 anchors.fill: parent
-                source:       Config.imagePath
-                fillMode:     Image.PreserveAspectCrop
+                source:   Config.imagePath
+                fillMode: Image.PreserveAspectCrop
             }
         }
 
-        // Video background — QtMultimedia is only referenced inside
-        // this Component, so it won't error if you haven't set videoPath.
         Component {
             id: videoBackground
             VideoBackground {
@@ -121,18 +115,19 @@ PanelWindow {
             }
         }
 
-        // Dark scrim so text is readable on image/video backgrounds
+        // Scrim
         Rectangle {
             anchors.fill: parent
             color:   "#000000"
-            opacity: Config.videoPath !== ""          ? 0.35 :
-                     Config.backgroundMode === "image"? 0.45 : 0.0
+            opacity: isPrimary && Config.videoPath !== ""           ? 0.35 :
+                     isPrimary && Config.backgroundMode === "image" ? 0.45 : 0.0
         }
 
-        // ── Centre content ───────────────────────────────────────────
+        // ── Primary-only content ─────────────────────────────────────
         Column {
             anchors.centerIn: parent
             spacing: 28
+            visible: isPrimary
 
             SpinnerArc {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -164,34 +159,23 @@ PanelWindow {
                 }
             }
 
-            // Progress bar — only shown in timed (non-video) mode
+            // Progress bar (timed mode only)
             Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 visible: Config.videoPath === ""
-                width:  220
-                height: 3
+                width: 220; height: 3
 
                 Rectangle {
                     anchors.fill: parent
-                    color:  Qt.rgba(1, 1, 1, 0.12)
-                    radius: 2
+                    color: Qt.rgba(1, 1, 1, 0.12); radius: 2
                 }
-
                 Rectangle {
-                    anchors {
-                        left:   parent.left
-                        top:    parent.top
-                        bottom: parent.bottom
-                    }
-                    width:  0
-                    radius: 2
-                    color:  Config.spinnerColor
-
+                    anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+                    width: 0; radius: 2; color: Config.spinnerColor
                     NumberAnimation on width {
-                        from:     0
-                        to:       220
+                        from: 0; to: 220
                         duration: Config.durationSeconds * 1000
-                        running:  Config.videoPath === "" && !root.dismissed
+                        running:  Config.videoPath === "" && !DismissState.dismissed
                         easing.type: Easing.Linear
                     }
                 }
@@ -200,35 +184,25 @@ PanelWindow {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text:  "Press any key or click to continue"
-                color: Qt.rgba(
-                    Config.subtitleColor.r,
-                    Config.subtitleColor.g,
-                    Config.subtitleColor.b,
-                    0.5)
-                font {
-                    pixelSize:     12
-                    family:        "monospace"
-                    letterSpacing: 1
-                }
+                color: Qt.rgba(Config.subtitleColor.r, Config.subtitleColor.g,
+                               Config.subtitleColor.b, 0.5)
+                font { pixelSize: 12; family: "monospace"; letterSpacing: 1 }
             }
         }
 
         // ── Fade-out ─────────────────────────────────────────────────
         NumberAnimation {
             id: fadeOut
-            target:   overlay
-            property: "opacity"
-            from:     1.0
-            to:       0.0
-            duration: 400
+            target: overlay; property: "opacity"
+            from: 1.0; to: 0.0; duration: 400
             easing.type: Easing.InQuad
-            onFinished:  root.visible = false
+            onFinished: root.visible = false
         }
 
-        // ── Auto-dismiss timer (timed mode only) ─────────────────────
+        // ── Auto-dismiss timer (primary, timed mode) ─────────────────
         Timer {
             interval: Config.durationSeconds * 1000
-            running:  Config.videoPath === ""
+            running:  isPrimary && Config.videoPath === ""
             repeat:   false
             onTriggered: root.dismiss()
         }

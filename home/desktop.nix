@@ -31,6 +31,7 @@
         openscad-lsp
         qutebrowser
         swaysome
+        gcr
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
@@ -50,6 +51,14 @@
         };
     };
 
+    programs.noctalia-shell = {
+        enable = true;
+    };
+
+    services.gnome-keyring = {
+        enable = true;
+        components = [ "secrets" ];
+    };
 
     wayland.windowManager.sway = {
         enable = true;
@@ -245,6 +254,10 @@
         ".local/bin/run-wallpaper-wayland.sh" = {
             executable = true;
             text = builtins.readFile(../scripts/run-wallpaper-wayland.sh);
+        };
+        ".local/bin/setup-wallpaper.sh" = {
+            executable = true;
+            text = builtins.readFile(../scripts/desktop/setup-wallpaper.sh);
         };
     };
 

@@ -20,6 +20,7 @@
         burpsuite
         blender
         arduino-ide
+        kdePackages.qtmultimedia
     ];
     programs.zen-browser.enable = true;
 

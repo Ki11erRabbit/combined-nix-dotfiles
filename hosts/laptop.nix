@@ -23,8 +23,6 @@
     }; 
     
     environment.systemPackages = with pkgs; [
-        quickshell
-        
     ];
 
     services.blueman.enable = true;

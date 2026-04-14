@@ -95,4 +95,19 @@ Singleton {
     readonly property color subtitleColor:   "#ea76cb"
     readonly property int   titleFontSize:   28
     readonly property int   messageFontSize: 16
+
+    // ──────────────────────────────────────────────────────────────
+    // PRIMARY SCREEN
+    // The screen that shows the full getting-ready UI (spinner,
+    // message, progress bar, input capture).
+    // All other screens show only the background color.
+    //
+    // Leave as "" to automatically use the first screen in
+    // Quickshell.screens (usually your main monitor).
+    //
+    // Set to a screen name to pin to a specific monitor, e.g.:
+    //   readonly property string primaryScreenName: "DP-1"
+    // You can find screen names by running: quickshell --list-screens
+    // ──────────────────────────────────────────────────────────────
+    readonly property string primaryScreenName: ""
 }
