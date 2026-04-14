@@ -17,6 +17,7 @@ let dwl-source = pkgs.fetchFromGitHub {
       pcloudFixes = pkgs.pcloud.overrideAttrs (_finalAttrs:previousAttrs: {
           nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ patchelfFixes ];
       });
+    themeName = "bl\u00e5haj";
     plymouth-blahaj = pkgs.stdenv.mkDerivation {
         name = "blåhaj";
         src = pkgs.fetchurl {
@@ -25,9 +26,8 @@ let dwl-source = pkgs.fetchFromGitHub {
         };
         # tarballs are auto-extracted, so src will already be unpacked
         installPhase = ''
-          themedir=$out/share/plymouth/themes/blåhaj
-          mkdir -p $themedir
-          cp -r * $themedir/
+            mkdir -p $out/share/plymouth/themes
+            cp -r * $out/share/plymouth/themes/
         '';
       };
 in {
