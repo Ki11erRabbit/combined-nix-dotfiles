@@ -17,19 +17,14 @@ let dwl-source = pkgs.fetchFromGitHub {
       pcloudFixes = pkgs.pcloud.overrideAttrs (_finalAttrs:previousAttrs: {
           nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ patchelfFixes ];
       });
-    themeName = "bl\u00e5haj";
     plymouth-blahaj = pkgs.stdenv.mkDerivation {
-        name = "blåhaj";
-        src = pkgs.fetchurl {
-          url = "https://github.com/190n/plymouth-blahaj/releases/download/v1.0.0/blahaj.tar.gz";
-          sha256 = "sha256-JSCu/3SK1FlSiRwxnjQvHtPGGkPc6u/YjaoIvw0PU8A=";
-        };
-        # tarballs are auto-extracted, so src will already be unpacked
+        name = "blahaj";
+        src = ../plymouth;
         installPhase = ''
-            mkdir -p $out/share/plymouth/themes
-            cp -r * $out/share/plymouth/themes/
+          mkdir -p $out/share/plymouth/themes
+          cp -r blahaj $out/share/plymouth/themes/
         '';
-      };
+    };
 in {
     nix.settings.experimental-features = "nix-command flakes";
 
@@ -65,7 +60,7 @@ in {
 
     boot.plymouth = {
         enable = true;
-        theme = "blåhaj";
+        theme = "blahaj";
         themePackages = [ plymouth-blahaj ];
     };
 
