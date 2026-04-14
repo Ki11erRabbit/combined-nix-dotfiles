@@ -2,7 +2,7 @@
 swayidle -w \
     timeout 900 'wlopm --off eDP-1' \
         resume 'wlopm --on eDP-1' \
-    timeout 1800 'qs -c noctalia-shell ipc call lockScreen lock' \
+    timeout 1800 'noctalia-shell ipc call lockScreen lock' \
         resume 'wlopm --on eDP-1' \
-    before-sleep 'qs -c noctalia-shell ipc call lockScreen lock' &
+    before-sleep 'noctalia-shell ipc call lockScreen lock' &
 
