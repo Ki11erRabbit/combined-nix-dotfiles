@@ -75,7 +75,7 @@ in {
     # Enable the KDE Plasma Desktop Environment.
     services.displayManager.sddm = {
         enable = true;
-        theme = "catppuccin-latte";
+        theme = "catppuccin-latte-pink";
     };
     services.displayManager.sddm.wayland.enable = true;
     security.pam.services.sddm.enableGnomeKeyring = true;
@@ -152,7 +152,7 @@ in {
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
-
+    
 
     environment.systemPackages = with pkgs; [
         neovim
@@ -204,6 +204,11 @@ in {
         wio
         libunwind
         polkit_gnome
+        (pkgs.catppuccin-sddm.override {
+            flavor = "latte";
+            accent = "pink";
+            loginBackground = true;
+        })
     ];
     
     virtualisation.podman = {
