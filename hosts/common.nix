@@ -20,9 +20,10 @@ let dwl-source = pkgs.fetchFromGitHub {
     plymouth-blahaj = pkgs.stdenv.mkDerivation {
         name = "blahaj";
         src = ../plymouth;
+        dontUnpack = true;
         installPhase = ''
           mkdir -p $out/share/plymouth/themes
-          cp -r blahaj $out/share/plymouth/themes/
+          cp -r $src/blahaj $out/share/plymouth/themes/
         '';
     };
 in {
