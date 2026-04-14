@@ -1,3 +1,3 @@
 #!/bin/sh
 
-run-wallpaper-wayland.sh
+run-wallpaper-wayland.sh 500 &

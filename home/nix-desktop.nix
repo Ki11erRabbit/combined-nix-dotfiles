@@ -25,7 +25,7 @@
 
     wayland.windowManager.mango = {
         enable = true;
-        settings = builtins.readFile(../mangowc-desktop/.config/mango/config.conf);
+        settings = builtins.readFile(../mangowc-desktop-nix/.config/mango/config.conf);
         autostart_sh = "";
     };
     
