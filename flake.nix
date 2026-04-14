@@ -59,10 +59,11 @@
     {
         nixosConfigurations = {
             nix-desktop = mkNixosSystem "x86_64-linux" "nix-desktop" "desktop";
-            #nix-T480 = mkNixosSystem "x86_64-linux" "think-nix-T480" "laptop";
+            nix-T480 = mkNixosSystem "x86_64-linux" "think-nix-t480" "laptop";
         };
         homeConfigurations = {
             "ki11errabbit@nix-desktop" = mkHome "x86_64-linux" "ki11errabbit" "nix-desktop" "desktop";
+            "ki11errabbit@think-nix-t480" = mkHome "x86_64-linux" "ki11errabbit" "think-nix-t480" "laptop";
             "ki11errabbit@macbook-pro" = mkHome "aarch64-darwin" "ki11errabbit" "macbook-pro" "macbook";
         };
     };
