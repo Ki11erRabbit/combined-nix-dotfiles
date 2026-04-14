@@ -22,8 +22,10 @@ let dwl-source = pkgs.fetchFromGitHub {
         src = ../plymouth;
         dontUnpack = true;
         installPhase = ''
-          mkdir -p $out/share/plymouth/themes
-          cp -r $src/blahaj $out/share/plymouth/themes/
+          mkdir -p $out/share/plymouth/themes/blahaj
+          cp -r $src/blahaj/. $out/share/plymouth/themes/blahaj/
+          substituteInPlace $out/share/plymouth/themes/blahaj/blahaj.plymouth \
+            --replace "/usr/share/plymouth/themes/blahaj" "$out/share/plymouth/themes/blahaj"
         '';
     };
 in {
@@ -64,7 +66,6 @@ in {
         theme = "blahaj";
         themePackages = [ plymouth-blahaj ];
     };
-
     environment.pathsToLink = [ "/share/zsh" "/lib" "/include" ];
     environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
 
