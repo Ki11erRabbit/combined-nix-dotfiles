@@ -17,6 +17,20 @@ let dwl-source = pkgs.fetchFromGitHub {
       pcloudFixes = pkgs.pcloud.overrideAttrs (_finalAttrs:previousAttrs: {
           nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ patchelfFixes ];
       });
+    plymouth-blahaj = pkgs.stdenv.mkDerivation {
+        name = "blåhaj";
+        src = pkgs.fetchFromGitHub {
+          owner = "190n";
+          repo = "plymouth-blahaj";
+          rev = "main";
+          sha256 = "sha256-1hN9Yr6eM1n4k/AUHtKBlOMCchYgpGEcOWBT5pv3snE=";
+        };
+        installPhase = ''
+          themedir=$out/share/plymouth/themes/blåhaj
+          mkdir -p $themedir
+          cp -r blåhaj/* $themedir/
+        '';
+  };
 
 in {
     nix.settings.experimental-features = "nix-command flakes";
@@ -25,6 +39,9 @@ in {
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.consoleLogLevel = 3;
+    boot.initrd.verbose = false;
+    boot.kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
 
     hardware.graphics.enable = true;
     
@@ -46,6 +63,12 @@ in {
         LC_PAPER = "en_US.UTF-8";
         LC_TELEPHONE = "en_US.UTF-8";
         LC_TIME = "en_US.UTF-8";
+    };
+
+    boot.plymouth = {
+        enable = true;
+        theme = "blåhaj";
+        themePackages = [ plymouth-blahaj ];
     };
 
     environment.pathsToLink = [ "/share/zsh" "/lib" "/include" ];
