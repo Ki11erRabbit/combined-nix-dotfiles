@@ -209,6 +209,9 @@ in {
     ]; 
 
     services.udev.extraRules = ''
+        # for kmonad to work
+        KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+
         ACTION=="add", ATTRS{idVendor}=="2dc8", ATTRS{idProduct}=="3106", RUN+="/sbin/modprobe xpad", RUN+="${pkgs.stdenv.shell} -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'"
 
         KERNEL=="input*", ATTRS{idVendor}=="17f6", ATTRS{idProduct}=="0822", RUN+="${pkgs.systemd}/bin/systemctl start --no-block unicomp-model-m.service"
@@ -311,10 +314,6 @@ in {
     system.stateVersion = "25.11"; # Did you read the comment?
 
     
-    services.udev.extraRules = ''
-        # for kmonad to work
-        KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-    '';
     security.sudo = {
         enable = true;
         extraRules = [{
