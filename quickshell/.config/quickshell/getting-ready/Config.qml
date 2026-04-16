@@ -67,7 +67,7 @@ Singleton {
         "Got any grapes?",
         "awww the scrunkly 🥰🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺🥺 double tap now if you'd scrunkly the when😆",
         "ʕ.•⁠ᴥ-.ʔ~♪",
-        "Crazy? I was crazy once. They put me in a room. A rubber room. A rubber room with rats. They put me in a rubber room with rubber rats. Rubber rats? I hate rubber rats. They make me crazy.",
+        "Crazy? I was crazy once. They put me in a room. A rubber room. A rubber room with rats.\nThey put me in a rubber room with rubber rats. Rubber rats? I hate rubber rats. They make me crazy.",
         "La vida es dura, pero más dura es mi verdura B)",
         "Pump it up kitty",
         "When you try to save a damsel in distress, all you get is a distressed damsel",
@@ -80,6 +80,8 @@ Singleton {
         "No one of us alone can change the world, but each of us can have an influence on the world",
         "WHY IS THERE CODE??? MAKE AN .EXE FILE AND GIVE IT TO ME. Stupid smelly nerds",
         "Cat ears are quantum mechanics",
+        "△×￥○＠％＆＄＃☆□！",
+        "to obtain or create something, an item or action of equal value must be given or sacrificed"
     ]
 
     // ──────────────────────────────────────────────────────────────
