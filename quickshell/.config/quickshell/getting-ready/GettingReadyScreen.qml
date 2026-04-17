@@ -140,6 +140,7 @@ PanelWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text:  "Getting Ready"
                 color: Config.textColor
+                horizontalAlignment: Text.AlignHCenter
                 font {
                     pixelSize:     Config.titleFontSize
                     weight:        Font.DemiBold
@@ -152,6 +153,7 @@ PanelWindow {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text:  root.chosenMessage
                 color: Config.subtitleColor
+                horizontalAlignment: Text.AlignHCenter
                 font {
                     pixelSize:     Config.messageFontSize
                     family:        "monospace"
@@ -186,6 +188,7 @@ PanelWindow {
                 text:  "Press any key or click to continue"
                 color: Qt.rgba(Config.subtitleColor.r, Config.subtitleColor.g,
                                Config.subtitleColor.b, 0.5)
+                horizontalAlignment: Text.AlignHCenter
                 font { pixelSize: 12; family: "monospace"; letterSpacing: 1 }
             }
         }

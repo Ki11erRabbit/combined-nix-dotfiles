@@ -41,6 +41,7 @@ Singleton {
         "You're such a good girl Alice. Keep it up!",
         "You're such a good girl",
         "This text is black. If you see pink, you're actually a cute trans girl :3",
+        "女の子になりたい",
         "Life cold and hard, tiddies soft and warm",
         "meow meow meow meow meow",
         ":3",
@@ -51,6 +52,8 @@ Singleton {
         "Do you think God stays in heaven because he, too, lives in fear of what he's created here on earth?",
         "Chat? Is this real?",
         "People die if they are killed.",
+        "The Archer class really is made up of archers!",
+        "When you have a birthday, you celebrate being born.",
         "shikanoko nokonoko koshitantan",
         "お前はもう死んでいる",
         "If I can do it tomorrow, I'll do it today!",
@@ -81,7 +84,10 @@ Singleton {
         "WHY IS THERE CODE??? MAKE AN .EXE FILE AND GIVE IT TO ME. Stupid smelly nerds",
         "Cat ears are quantum mechanics",
         "△×￥○＠％＆＄＃☆□！",
-        "to obtain or create something, an item or action of equal value must be given or sacrificed"
+        "to obtain or create something, an item or action of equal value must be given or sacrificed",
+        "私は眠らない明日",
+        "I am the sleepless tomorrow",
+        "Don't forget.\nAlways, somewhere,\nsomeone is fighting for you. As long as you remember her,\nyou are not alone."
     ]
 
     // ──────────────────────────────────────────────────────────────
