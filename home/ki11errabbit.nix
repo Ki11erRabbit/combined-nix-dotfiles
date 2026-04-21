@@ -167,7 +167,6 @@
         hexyl
         procs
         #jellyfin-media-player
-        jdk21
         erlang
         helix
         kakoune
@@ -197,7 +196,7 @@
         podman-desktop
         podman
         podman-compose
-        
+        jdk25_headless
     ];
 
     programs.alacritty = {
