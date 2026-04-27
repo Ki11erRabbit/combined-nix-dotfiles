@@ -40,9 +40,10 @@ in {
     boot.kernelParams = [ "quiet" "udev.log_level=3" "systemd.show_status=auto" ];
 
     hardware.graphics.enable = true;
+    hardware.graphics.enable32Bit = true;
     
-    time.timeZone = "America/Denver";
-    #time.timeZone = "America/Los_Angeles";
+    #time.timeZone = "America/Denver";
+    time.timeZone = "America/Los_Angeles";
     #services.automatic-timezoned.enable = true;
     #networking.timeServers = [ "time.cloudflare.com" "time.google.com" ];
 
