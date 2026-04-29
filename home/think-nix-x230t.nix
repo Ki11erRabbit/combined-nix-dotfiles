@@ -112,7 +112,7 @@
         };
     };
     home.file = {
-        ".config/kmonad/t480.kbd".text = ''
+        ".config/kmonad/x230t.kbd".text = ''
             (defcfg
                 input (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
                 output (uinput-sink "T480s Keyboard")
@@ -133,37 +133,42 @@
 
 
 
-            (defsrc
-                esc  mute vold volu f20  brdn brup KeySwitchVideoMode wlan  KeyConfig  KeyBluetooth KeyScale file   home  end   ins   del
-                grv  1    2    3    4    5    6    7    8    9    0    -    =     bspc
-                tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-                caps a    s    d    f    g    h    j    k    l    ;    '    ret
-                lsft z    x    c    v    b    n    m    ,    .    /    rsft
-                lctl wkup lmet lalt      spc            ralt ssrq rctl pgup up   pgdn
-                                                                       left down rght
-            )
+        (defsrc
+          esc            vold volu mute                ssrq slck pp    ins  home pgup
+          f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   del  end  pgdn
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  
+          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     
+          caps a    s    d    f    g    h    j    k    l    ;    '    ret        
+          lsft z    x    c    v    b    n    m    ,    .    /    rsft                 
+          lctl wkup lalt           spc                 ralt rctl back up   fwd       
+                                                                 left down rght  
+        )
 
 
-            (deflayer qwerty
-                esc   mute  vold  volu  f20   brdn brup @vido wlan  @cfg  KeyBluetooth @lnch file   home  end   ins   caps
-                grv   1     2     3     4     5    6    7     8     9     0     -     =      del
-                tab   q     w     e     r     t    y    u     i     o     p     [     ]      \
-                bspc  a     s     d     f     g    h    j     k     l     ;     '     ret
-                lsft  z     x     c     v     b    n    m     ,     .     /     rsft
-                lctl  @fn   lalt  lmet        spc             ralt  ssrq  rctl  pgup  up    pgdn
-                                                                                left  down  rght
-            )
+            
+        (deflayer qwerty
+          esc            vold volu mute                ssrq slck pp    ins  home pgup
+          f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   del  end  pgdn
+          grv  1    2    3    4    5    6    7    8    9    0    -    =    caps  
+          tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     
+          bspc a    s    d    f    g    h    j    k    l    ;    '    ret        
+          lsft z    x    c    v    b    n    m    ,    .    /    rsft                 
+          lctl @fn  lalt           spc                 ralt rctl back up   fwd       
+                                                                 left down rght  
+        )
+
 
 
             (deflayer function
-                _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   _    _    _    _  
-                _    _    _    _    _    _    _    _    _    _    _    _    _     _   
-                _    _    _    _    _    _    _    _    _    _    _    _    _    _
-                _    _    _    _    _    _    _    _    _    _    _    _    _  
-                _    _    _    _    _    _    _    _    _    _    _    _   
-                _    _    _    _         _              _    _    _    _    _    _   
-                                                                       _    _    _   
-            )
+          _              _    _    _                   _    _    _     _    _    _   
+          f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   _  _  _
+          _    _    _    _    _    _    _    _    _    _    _    _    _    _  
+          _  _    _    _    _    _    _    _    _    _    _    _    _    _     
+          bspc _    _    _    _    _    _    _    _    _    _    _    _          
+          _    _    _    _    _    _    _    _    _    _    _    _                    
+          _    _    _              _                   _    _    _    _   _           
+                                                                 _    _    _     
+        )
         '';
         ".local/bin/setup-keyboard.sh" = {
             executable = true;
