@@ -32,6 +32,7 @@
         qutebrowser
         swaysome
         gcr
+        gamescope
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
