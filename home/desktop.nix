@@ -33,6 +33,7 @@
         swaysome
         gcr
         gamescope
+        teams-for-linux
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
