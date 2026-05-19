@@ -34,6 +34,7 @@
         gcr
         gamescope
         teams-for-linux
+        kdePackages.kdenlive
     ];
 
     nixpkgs.config.packageOverrides = pkgs: {
