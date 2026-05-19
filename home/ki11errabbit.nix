@@ -11,7 +11,7 @@
 
     programs.git.enable = true;
     programs.git.settings = {
-        user.name = "Alec Davis";
+        user.name = "Alice Davis";
         user.email = "unlikelytitan@gmail.com";
         extraConfig = {
             init = {

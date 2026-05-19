@@ -296,10 +296,9 @@ in {
     };
     xdg.portal.wlr.settings = {
         screencast = {
-            output_name = "HDMI-A-0";
             max_fps = 60;
-            chooser_type = "simple";
-            chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -ro";
+            chooser_type = "dmenu";
+            chooser_cmd = "${pkgs.rofi}/bin/rofi -dmenu";
         };
     };
 
