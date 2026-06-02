@@ -2,6 +2,12 @@
 
 {
     networking.hostName = "nix-desktop"; # Define your hostname.
+    
+    networking.nameservers = [
+        "192.168.254.188"
+    ];
+    
+    networking.networkmanager.dns = "none";
 
     # Configure keymap in X11
     services.xserver = {

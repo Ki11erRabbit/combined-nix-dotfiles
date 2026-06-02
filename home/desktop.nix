@@ -4,6 +4,7 @@
 
     home.packages = with pkgs; [
         obs-studio
+        audacity
         godot-mono
         bemenu
         wlr-randr

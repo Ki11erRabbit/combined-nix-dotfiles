@@ -87,7 +87,8 @@ Singleton {
         "to obtain or create something, an item or action of equal value must be given or sacrificed",
         "私は眠らない明日",
         "I am the sleepless tomorrow",
-        "Don't forget.\nAlways, somewhere,\nsomeone is fighting for you. As long as you remember her,\nyou are not alone."
+        "Don't forget.\nAlways, somewhere,\nsomeone is fighting for you. As long as you remember her,\nyou are not alone.",
+        "pls rember that wen u feel scare or frigten never forget ttimes wen u feeled happy\n\nwen day is dark always rember happy day"
     ]
 
     // ──────────────────────────────────────────────────────────────
