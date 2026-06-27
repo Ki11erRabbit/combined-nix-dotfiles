@@ -41,19 +41,6 @@
         "electron-39.8.10"
     ];
 
-    programs.obs-studio = {
-        enable = true;
-        
-        plugins = with pkgs.obs-studio-plugins; [
-            wlrobs
-            obs-backgroundremoval
-            obs-pipewire-audio-capture
-            obs-vaapi #optional AMD hardware acceleration
-            obs-gstreamer
-            obs-vkcapture
-        ];
-    };
-
     nixpkgs.config.packageOverrides = pkgs: {
         steam = pkgs.steam.override {
             extraPkgs = pkgs: with pkgs; [

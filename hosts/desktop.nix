@@ -5,7 +5,15 @@
     
     networking.nameservers = [
     ];
-    
+
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+            libva-vdpau-driver
+            libvdpau-va-gl
+        ];
+    };
 
     # Configure keymap in X11
     services.xserver = {
