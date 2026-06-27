@@ -63,7 +63,7 @@
                 "SUPER,q,killclient"
                 "SUPER,Return,spawn,alacritty"
 # d
-                "SUPER,d,spawn,noctalia-shell ipc call launcher toggle"
+                "SUPER,d,spawn,noctalia msg panel-toggle launcher"
 # r
                 "SUPER,r,spawn,dolphin"
 # s
@@ -141,21 +141,21 @@
 # c
 "SUPER+ALT,c,setlayout,vertical_scroller"
 
-                "NONE,code:123,spawn,noctalia-shell ipc call volume increase"
-                "NONE,code:122,spawn,noctalia-shell ipc call volume decrease"
-                "NONE,code:121,spawn,noctalia-shell ipc call volume muteOutput"
+                "NONE,code:123,spawn,noctalia msg volume-up"
+                "NONE,code:122,spawn,noctalia msg volume-down"
+                "NONE,code:121,spawn,noctalia msg volume-mute"
 
-                "NONE,code:232,spawn,noctalia-shell ipc call brightness increase"
-                "NONE,code:233,spawn,noctalia-shell ipc call brightness decrease"
+                #"NONE,code:232,spawn,noctalia ipc call brightness increase"
+                #"NONE,code:233,spawn,noctalia ipc call brightness decrease"
 
 
 #bindsym XF86_AudioMicMute exec 'noctalia-shell ipc call volume muteInput'
 
 #bindsym XF86Sleep exec 'noctalia-shell ipc call sessionMenu lockAndSuspend'
-                "NONE,code:172,spawn,noctalia-shell ipc call media playPause"
-                "NONE,code:173,spawn,noctalia-shell ipc call media previous"
-                "NONE,code:171,spawn,noctalia-shell ipc call media next"
-                "NONE,code:225,spawn,noctalia-shell ipc call launcher toggle"
+                "NONE,code:172,spawn,noctalia msg media toggle"
+                "NONE,code:173,spawn,noctalia msg media previous"
+                "NONE,code:171,spawn,noctalia msg media next"
+                "NONE,code:225,spawn,noctalia msg panel-toggle launcher"
 
                 "NONE,code:128,toggleoverview"
             ];
@@ -182,7 +182,7 @@
         };
         autostart_sh = ''
 quickshell -n -c /home/ki11errabbit/.config/quickshell/getting-ready/ &
-noctalia-shell &
+noctalia &
 /home/ki11errabbit/.local/bin/configure-monitors.sh &
 /home/ki11errabbit/.local/bin/setup-wallpaper.sh &
 /home/ki11errabbit/.local/bin/setup-swayidle.sh &
