@@ -1,11 +1,5 @@
 { config, pkgs, lib, ... }:
-let dwl-source = pkgs.fetchFromGitHub {
-    owner = "Ki11erRabbit";
-    repo = "dwl";
-    rev = "main";
-    hash = "sha256-tT2uCIdF7IY72roDfiSBIbybQ4zZis2AVKU/0rTIUSg=";
-    };
-    dwl-custom = (pkgs.callPackage "${dwl-source}/dwl.nix" {});
+    let 
     patchelfFixes = pkgs.patchelfUnstable.overrideAttrs (_finalAttrs: _previousAttrs: {
         src = pkgs.fetchFromGitHub {
             owner = "Patryk27";
@@ -76,14 +70,14 @@ in {
     security.pam.services.login.enableGnomeKeyring = true;
     security.pam.services.sddm.enableGnomeKeyring = true;
     services.displayManager.sessionPackages = [
-        ((pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
+        /*((pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
         [Desktop Entry]
         Name=dwl
         Comment=dwm for Wayland
         Exec=startdwl.sh
         Type=Application
         '')
-        .overrideAttrs (_: {passthru.providedSessions = ["dwl"];}))
+        .overrideAttrs (_: {passthru.providedSessions = ["dwl"];}))*/
         ((pkgs.writeTextDir "share/wayland-sessions/wio.desktop" ''
         [Desktop Entry]
         Name=wio
@@ -192,7 +186,6 @@ in {
         gnum4
         pkg-config
         binutils
-        dwl-custom
         libsecret
         slurp
         pcloudFixes
