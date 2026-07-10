@@ -29,7 +29,7 @@
 
 ;; Bind Keys
 
-(use-package bind-keys)
+(use-package bind-key)
 
 ;; Catppuccin
 
@@ -110,11 +110,12 @@
 (use-package sudo-edit)
 
 ;; Project Management
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+;(use-package projectile
+;  :ensure t
+;  :config
+;  (projectile-mode +1)
+;  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;  (setq projectile-indexing-method 'alien))
 
 ;; Magit
 (use-package magit)
