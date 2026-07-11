@@ -278,5 +278,12 @@
     home.sessionVariables = {
         # EDITOR = "emacs";
     };
+
+    home.file = {
+        ".local/bin/tkak" = {
+            executable = true;
+            text = builtins.readFile(../scripts/tkak);
+        };
+    };
 }
 
