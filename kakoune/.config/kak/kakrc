@@ -37,27 +37,9 @@ hook global WinCreate ^[^*]+$ %{editorconfig-load}
 
 # Expand tabs to spaces
 
-define-command expandtab %{
-    remove-hooks global expandtab
-    hook -group expandtab global InsertChar '\t' %{ execute-keys -draft h@ }
-    hook -group expandtab global InsertKey <backspace> %{ try %{
-        execute-keys -draft <a-h><a-k> "^\h+.\z" <ret>I<space><esc><lt>
-    }}
-    set-option global aligntab false
-    remove-hooks global noexpandtab
-    remove-hooks global smarttab
-}
 
 
-evaluate-commands %sh{
-  # We're assuming the default bundle_path here...
-  plugins="$kak_config/bundle"
-  mkdir -p "$plugins"
-  [ ! -e "$plugins/kak-bundle" ] && \
-    git clone -q https://github.com/jdugan6240/kak-bundle "$plugins/kak-bundle"
-  printf "%s\n" "source '$plugins/kak-bundle/rc/kak-bundle.kak'"
-}
-
+source "%val{config}/bundle/kak-bundle/rc/kak-bundle.kak"
 bundle-noload kak-bundle https://github.com/jdugan6240/kak-bundle
 
 bundle kakboard https://github.com/lePerdu/kakboard/ %{
@@ -89,13 +71,6 @@ bundle smarttab.kak https://github.com/andreyorst/smarttab.kak %{
 
 bundle kakoune-registers https://github.com/Delapouite/kakoune-registers
 
-bundle-install-hook kakoune-lsp %{
-    cargo install --locked --force --path .
-    # optional: if you want to use specific language servers
-    mkdir -p ~/.config/kak-lsp
-    cp -n kak-lsp.toml ~/.config/kak-lsp/
-}
-
 bundle auto-pairs.kak https://github.com/alexherbo2/auto-pairs.kak %{
     hook global WinCreate .* %{ enable-auto-pairs }
 }
@@ -117,7 +92,7 @@ bundle kak-rainbow https://github.com/Bodhizafa/kak-rainbow %{
 	hook global WinSetOption filetype=(koka|rust|python|c|c\+\+|scheme|lisp|clojure|javascript|json|coq) %{
         rainbow-enable-window
 	}
-	set-option rainbow_colors '#8839ef #ea76cb #dd7878 #e64553 #d20f39 #fe640b #df8e1d #40a02b #179299 #209fb5 #04a5e5 #1e66f5 #7287fd'
+	set-option global rainbow_colors '#8839ef #ea76cb #dd7878 #e64553 #d20f39 #fe640b #df8e1d #40a02b #179299 #209fb5 #04a5e5 #1e66f5 #7287fd'
 }
 
 bundle kak-tree-sitter https://sr.ht/~hadronized/kak-tree-sitter/
@@ -152,13 +127,18 @@ hook global WinSetOption filetype=coq %{
         -docstring "move tip to main cursor"
 }
 
-
-bundle kakoune-lsp https://github.com/kakoune-lsp/kakoune-lsp %{
-	eval %sh{kak-lsp --kakoune -s $kak_session}  # Not needed if you load it with plug.kak.
-	lsp-enable
-}
 bundle-install-hook kakoune-lsp %{
     cargo install --locked --force --path .
+    mkdir -p ~/.config/kak-lsp
+    cp -n kak-lsp.toml ~/.config/kak-lsp/
+}
+
+bundle kakoune-lsp https://github.com/kakoune-lsp/kakoune-lsp %{
+    eval %sh{kak-lsp}  # Not needed if you load it with plug.kak.
+}
+
+hook global WinSetOption filetype=(rust|python|c|cpp) %{
+    lsp-enable-window
 }
 
 hook global WinSetOption filetype=<language> %{
@@ -176,5 +156,104 @@ eval %sh{ kak-tree-sitter -dks --init $kak_session --with-text-objects -vvvvv }
 #colorscheme doom-one
 colorscheme catppuccin_latte
 
+hook global WinSetOption filetype=rust %{
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+  }
+}
 
+set-option global lsp_config %{
+[language.rust.settings]
+rust-analyzer.semanticHighlighting.nonStandardTokens = true
+rust-analyzer.semanticHighlighting.strings.enable = true
+rust-analyzer.semanticHighlighting.punctuation.enable = true
+rust-analyzer.semanticHighlighting.punctuation.separate.macro.bang = true
+rust-analyzer.semanticHighlighting.operator.enable = true
+}
 
+set-option global lsp_semantic_tokens %{
+    [
+        # items
+        {face="attribute", token="attribute"},
+        {face="type", token="enum"},
+        {face="function", token="function"},
+        {face="meta", token="derive"},
+        {face="meta", token="macro"},
+        {face="function", token="method"},
+        {face="module", token="namespace"},
+        {face="type", token="struct"},
+        {face="type", token="trait"},
+        {face="type", token="typeAlias"},
+        {face="type", token="union"},
+
+        # literals
+        {face="value", token="boolean"},
+        {face="string", token="character"},
+        {face="value", token="number"},
+        {face="string", token="string"},
+        {face="meta", token="escapeSequence"},
+        {face="meta", token="formatSpecifier"},
+
+        # operators
+        {face="operator", token="operator"},
+        {face="operator", token="arithmetic"},
+        {face="operator", token="bitwise"},
+        {face="operator", token="comparison"},
+        {face="operator", token="logical"},
+
+        # punctuation
+        {face="operator", token="punctuation"},
+        {face="attribute", token="attributeBracket"},
+        {face="operator", token="angle"},
+        {face="operator", token="brace"},
+        {face="operator", token="bracket"},
+        {face="operator", token="parenthesis"},
+        {face="operator", token="colon"},
+        {face="operator", token="comma"},
+        {face="operator", token="dot"},
+        {face="operator", token="semi"},
+        {face="meta", token="macroBang"},
+
+        # misc
+        {face="attribute", token="builtinAttribute"},
+        {face="type", token="builtinType"},
+        {face="comment", token="comment"},
+        {face="variable", token="constParameter"},
+        {face="meta", token="deriveHelper"},
+        {face="variable", token="enumMember"},
+        {face="type", token="generic"},
+        {face="keyword", token="keyword"},
+        {face="meta", token="label"},
+        {face="meta", token="lifetime"},
+        {face="variable", token="parameter"},
+        {face="variable", token="property"},
+        {face="keyword", token="selfKeyword"},
+        {face="keyword", token="selfTypeKeyword"},
+        {face="module", token="toolModule"},
+        {face="type", token="typeParameter"},
+        {face="Error", token="unresolvedReference"},
+        {face="variable", token="variable"},
+
+        # modifier overrides (more specific entries win)
+        {face="variable", token="variable", modifiers=["mutable"]},
+        {face="value", token="variable", modifiers=["constant"]},
+        {face="function", token="function", modifiers=["unsafe"]},
+    ]
+}
+
+face global InfoDefault               Information
+face global InfoBlock                 Information
+face global InfoBlockQuote            Information
+face global InfoBullet                Information
+face global InfoHeader                Information
+face global InfoLink                  Information
+face global InfoLinkMono              Information
+face global InfoMono                  Information
+face global InfoRule                  Information
+face global InfoDiagnosticError       Information
+face global InfoDiagnosticHint        Information
+face global InfoDiagnosticInformation Information
+face global InfoDiagnosticWarning     Information

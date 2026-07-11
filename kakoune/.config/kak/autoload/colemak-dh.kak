@@ -23,6 +23,10 @@ map global normal <a-e> <a-k>
 map global normal <a-k> <a-e>
 map global normal <a-E> <a-K>
 map global normal <a-K> <a-E>
+map global normal h m
+map global normal H M
+map global normal <a-h> <a-m>
+map global normal <a-H> <a-M>
 
 map global goto m h -docstring 'line start'
 map global goto n j -docstring 'buffer bottom'
@@ -39,8 +43,10 @@ map global view m l -docstring 'scroll right'
 
 
 # Select whole lines when moving selection with J or K
-map global normal N J<a-x>
-map global normal E K<a-x>
+map global normal N J
+map global normal E K
+
+map global insert <c-e> <c-p> -docstring 'select previous completion candidate'
 
 # Make I insert before every line
 map global normal T "<a-s>I"

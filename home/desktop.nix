@@ -35,6 +35,7 @@
         gamescope
         teams-for-linux
         kdePackages.kdenlive
+        kakoune-lsp
     ];
 
     nixpkgs.config.permittedInsecurePackages = [
