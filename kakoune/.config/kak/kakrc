@@ -135,19 +135,11 @@ bundle-install-hook kakoune-lsp %{
 
 bundle kakoune-lsp https://github.com/kakoune-lsp/kakoune-lsp %{
     eval %sh{kak-lsp}  # Not needed if you load it with plug.kak.
+    lsp-auto-hover-enable
 }
 
 hook global WinSetOption filetype=(rust|python|c|cpp) %{
     lsp-enable-window
-}
-
-hook global WinSetOption filetype=<language> %{
-  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
-  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
-  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
-  hook -once -always window WinSetOption filetype=.* %{
-    remove-hooks window semantic-tokens
-  }
 }
 
 eval %sh{ kak-tree-sitter -dks --init $kak_session --with-text-objects -vvvvv }

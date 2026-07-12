@@ -1,9 +1,9 @@
 #!/bin/sh
 
-SESSION="${1:-kak}"
+SESSION="$1"
 
 if ! tmux has-session -t "$SESSION" 2>/dev/null; then
-    tmux new-session -d -s "$SESSION"
+    tmux new-session -d -s "$SESSION" kak ${@:2}
     tmux source-file "$SESSION" ~/.config/tmux/tmux-kakoune.conf 2>/dev/null
     tmux source-file ~/.config/tmux/tmux-kakoune.conf
 fi
