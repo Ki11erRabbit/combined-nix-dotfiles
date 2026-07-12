@@ -4,7 +4,13 @@
 #     ln -s "$kak_runtime/rc" "$kak_config/autoload/standard-library"
 # }
 
-
+hook global KakBegin .* %{
+    nop %sh{
+        if [ -n "$TMUX" ]; then
+            tmux set-environment KAKOUNE_SESSION "$kak_session"
+        fi
+    }
+}
 # Width of a tab
 set-option global tabstop 4
 
