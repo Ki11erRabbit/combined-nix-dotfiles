@@ -1,9 +1,4 @@
 typeset -U path cdpath fpath manpath
-for profile in ${(z)NIX_PROFILES}; do
-  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
-done
-
-HELPDIR="/nix/store/xw5xd0zbz7m9zqq7s0r2rf821a72ar97-zsh-5.9/share/zsh/$ZSH_VERSION/help"
 
 PROMPT="❬%F{13}%n%f❭ %f%F{13}図書館に%f %F{12}%d
 %f "
@@ -11,12 +6,12 @@ autoload -U compinit && compinit
 eval "$(zoxide init zsh )"
 
 # History options should be set in .zshrc and after oh-my-zsh sourcing.
-# See https://github.com/nix-community/home-manager/issues/177.
+# See https://github.com/nix-community/Users-manager/issues/177.
 HISTSIZE="1500"
 SAVEHIST="1000"
 
-HISTFILE="/home/ki11errabbit/.zsh_history"
-#mkdir -p "$(dirname "$HISTFILE")"
+HISTFILE="/Users/ki11errabbit/.zsh_history"
+mkdir -p "$(dirname "$HISTFILE")"
 
 setopt HIST_FCNTL_LOCK
 
@@ -39,10 +34,9 @@ for opt in "${disabled_opts[@]}"; do
 done
 unset opt disabled_opts
 
-export PATH="$PATH:/home/ki11errabbit/.cabal/bin:/home/ki11errabbit/.local/bin:$PATH:/home/ki11errabbit/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/home/ki11errabbit/.cargo/bin"
+export PATH="$PATH:/Users/ki11errabbit/.cabal/bin:/Users/ki11errabbit/.local/bin:/Users/ki11errabbit/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/Users/ki11errabbit/.cargo/bin:/Users/ki11errabbit/go/bin"
 
 if [[ -o interactive ]]; then
-    #exec nu
 fi
 
 if [[ $TERM != "dumb" ]]; then
@@ -66,4 +60,9 @@ alias -- root='cd /'
 alias -- tree='eza --tree --icons'
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
 
+bindkey '^[[3~' delete-char
 
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
